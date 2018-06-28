@@ -2,34 +2,27 @@
 
     <!-- Widget -->
     <div class="widget">
-
         <form class="search-form">
-
-            <input type="text" placeholder="Search Products">
+            <input type="text" placeholder="검색어 입력" />
             <button type="submit"><i class="licon-magnifier"></i></button>
-
         </form>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Categories</h6>
-
+        <h6 class="widget-title">인기 카테고리</h6>
         <ul class="custom-list style-2">
-            <li><a href="#">Beauty</a></li>
-            <li><a href="#">Clothes</a></li>
-            <li><a href="#">Equipment</a></li>
-            <li><a href="#">Food & Drinks</a></li>
+            <li><a href="#">요가</a></li>
+            <li><a href="#">요가용품</a></li>
+            <li><a href="#">필라테스</a></li>
+            <li><a href="#">다이어트</a></li>
         </ul>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
 
-        <h6 class="widget-title">Latest Posts</h6>
+        <h6 class="widget-title">최신 글</h6>
 
         <div class="entry-box entry-small style-2">
 
@@ -106,79 +99,55 @@
     <!-- Widget -->
     <div class="widget">
 
-        <h6 class="widget-title">Like Us On Facebook</h6>
+        <h6 class="widget-title">페이스북</h6>
 
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
                 js = d.createElement(s); js.id = id;
-                js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=480919338591874';
+                js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=앱아이디';
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
 
-        <div class="fb-page" data-href="https://www.facebook.com/envato" data-width="300" data-height="205" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+        <div class="fb-page" data-href="https://www.facebook.com/jcorporationtech/" data-width="300" data-height="205" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
 
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Tags</h6>
-
+        <h6 class="widget-title">태그</h6>
         <div class="tagcloud">
-
-            <a href="#">accessories</a>
-            <a href="#">bag</a>
-            <a href="#">Beauty</a>
-            <a href="#">Belt</a>
-            <a href="#">blocks</a>
-            <a href="#">bra</a>
-            <a href="#">clothes</a>
-            <a href="#">Cushion</a>
-            <a href="#">equipment</a>
-            <a href="#">Mat</a>
-            <a href="#">t-shirt</a>
-
+            <a href="#">요가</a>
+            <a href="#">요가복</a>
+            <a href="#">미용</a>
+            <a href="#">다이어트</a>
+            <a href="#">필라테스</a>
         </div>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Featured Video</h6>
-
+        <h6 class="widget-title">추천 영상</h6>
         <div class="responsive-iframe content-element3">
-
             <iframe src="https://player.vimeo.com/video/169730736?title=0&amp;byline=0&amp;portrait=0&amp;color=dedede"></iframe>
-
         </div>
-
         <a href="#" class="btn btn-small btn-style-4">View All Videos</a>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Latest Tweets</h6>
-
+        <h6 class="widget-title">최근 트윗</h6>
         <div id="twitter" class="twitter"></div>
-
         <a href="#" class="btn btn-small tweet-btn"><i class="icon-twitter"></i>Follow Us</a>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Calendar</h6>
+        <h6 class="widget-title">달력</h6>
         <div class="widget-calendar">
             <div class="owl-carousel" data-max-items="1">
-
                 <div class="item">
-
                     <div class="calendar-wrap">
                         <table>
                             <tr>
@@ -251,11 +220,8 @@
                             </tr>
                         </table>
                     </div>
-
                 </div>
-
                 <div class="item">
-
                     <div class="calendar-wrap">
                         <table>
                             <tr>
@@ -330,30 +296,21 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
-
         <a href="#" class="calendar-month">« Nov</a>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Upcoming Events</h6>
+        <h6 class="widget-title">당신만을 위한 알림</h6>
         <div class="event-box">
-
             <div class="entry">
-
                 <div class="event-date">nov<span>18</span></div>
-
                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                 <div class="entry-body">
-
                     <h6 class="entry-title"><a href="#">Saluting the Sun - A Hands - On Assist Workshop</a></h6>
                     <div class="our-info vr-type">
-
                         <div class="info-item">
                             <i class="licon-clock3"></i>
                             <div class="wrapper">
@@ -366,11 +323,8 @@
                                 <span>8901 Marmora Road, Glasgow, D04 89GR</span>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
             <div class="entry">
@@ -440,44 +394,37 @@
     <!-- Widget -->
     <div class="widget">
 
-        <h6 class="widget-title">Recent Comments</h6>
+        <h6 class="widget-title">최근 코멘트</h6>
         <ul class="info-links comment-type">
-
             <li><a href="#" class="author">admin</a> on <a href="#">Post With SoundCloud</a></li>
-            <li><a href="#" class="author">jane smith</a> on <a href="#">Featured Post With Image</a></li>
-            <li><a href="#" class="author">alex russell </a> on <a href="#">Post With Vimeo Video</a></li>
+            <li><a href="#" class="author">이왕진</a> on <a href="#">Featured Post With Image</a></li>
+            <li><a href="#" class="author">홍길동 </a> on <a href="#">Post With Vimeo Video</a></li>
             <li><a href="#" class="author">admin</a> on <a href="#">Post With SoundCloud</a></li>
-            <li><a href="#" class="author">jane smith</a> on <a href="#">Featured Post With Image</a></li>
-
+            <li><a href="#" class="author">이재준</a> on <a href="#">Featured Post With Image</a></li>
         </ul>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Archives</h6>
+        <h6 class="widget-title">최근 활동</h6>
         <ul class="custom-list style-2">
-
             <li><a href="#">November 2018</a></li>
             <li><a href="#">October 2018</a></li>
             <li><a href="#">September 2018</a></li>
             <li><a href="#">August 2018</a></li>
             <li><a href="#">July 2018</a></li>
-
         </ul>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
 
-        <h6 class="widget-title">Pages</h6>
+        <h6 class="widget-title">협력사</h6>
         <div class="mad-custom-select">
             <select data-default-text="Please select">
-                <option value="Option 1">Option 1</option>
-                <option value="Option 2">Option 2</option>
-                <option value="Option 3">Option 3</option>
+                <option value="Option 1">요가용품1</option>
+                <option value="Option 2">요가용품2</option>
+                <option value="Option 3">요가용품3</option>
             </select>
         </div>
 
@@ -485,20 +432,16 @@
 
     <!-- Widget -->
     <div class="widget">
-
         <h6 class="widget-title">From Instagram</h6>
-
         <div id="instafeed" class="instagram-feed insta-small" data-instagram="6"></div>
-
-        <a href="#" class="btn btn-small"><i class="icon-instagram-5"></i>Follow Us on Instagram</a>
-
+        <a href="#" class="btn btn-small"><i class="icon-instagram-5"></i>Follow Us on 인스타그램</a>
     </div>
 
     <!-- Widget -->
     <div class="widget">
 
-        <h6 class="widget-title">Newsletter Sign Up</h6>
-        <p>Subscribe now and get exclusive news, interviews and stories.</p>
+        <h6 class="widget-title">뉴스레터 Sign Up</h6>
+        <p>지금 구독하세요. 최근 소식을 메일로 보내드립니다.</p>
 
         <form id="newsletter2" class="newsletter">
             <input type="email" name="newsletter-email" placeholder="Enter your email address">
@@ -509,24 +452,19 @@
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Meta</h6>
+        <h6 class="widget-title">메타 정보</h6>
         <ul class="custom-list style-2">
-
             <li><a href="#">Log in</a></li>
             <li><a href="#">Entries RSS</a></li>
             <li><a href="#">Comments RSS</a></li>
             <li><a href="#">WordPress.org</a></li>
-
         </ul>
-
     </div>
 
     <!-- Widget -->
     <div class="widget">
-
-        <h6 class="widget-title">Text Widget</h6>
-        <p>Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. </p>
+        <h6 class="widget-title">인기 단어</h6>
+        <p>#요가 #다이이트 #체중감량 #구직 #운동 </p>
 
     </div>
 

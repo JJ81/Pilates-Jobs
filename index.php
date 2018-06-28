@@ -29,16 +29,16 @@
     <?php require_once ('./inc/header.php');?>
 
     <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
-    <div class="breadcrumbs-wrap">
-        <div class="container">
-            <h1 class="page-title">Classic Blog</h1>
-            <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
-                <li>Blog</li>
-                <li>Classic</li>
-            </ul>
-        </div>
-    </div>
+<!--    <div class="breadcrumbs-wrap">-->
+<!--        <div class="container">-->
+<!--            <h1 class="page-title">Classic Blog</h1>-->
+<!--            <ul class="breadcrumbs">-->
+<!--                <li><a href="index.html">Home</a></li>-->
+<!--                <li>Blog</li>-->
+<!--                <li>Classic</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
     <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
 
     <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
@@ -65,17 +65,16 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">Start Your Day With Energy & Focus </a></h5>
+                                    <h5 class="entry-title"><a href="#">이와 같이 알림과 소식이 전달됩니다. </a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-21">November 18, 2018, posted</time>
+                                        <time class="entry-date" datetime="2018-12-21">2018-12-21 posted</time>
                                         <span>by</span>
                                         <a href="#" class="entry-cat">Admin</a>
-
                                     </div>
-                                    <p>Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo... </p>
+                                    <p>새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. </p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -89,15 +88,11 @@
                                 <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                 <div class="thumbnail-attachment">
                                     <div class="carousel-type-2 var3">
-
                                         <div class="owl-carousel" data-max-items="1">
-
                                             <img src="./assets/images/698x442_img2.jpg" alt="">
                                             <img src="./assets/images/698x442_img3.jpg" alt="">
                                             <img src="./assets/images/698x442_img4.jpg" alt="">
-
                                         </div>
-
                                     </div>
                                     <div class="entry-label">Practice</div>
                                 </div>
@@ -105,17 +100,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">Explore Your Core</a></h5>
+                                    <h5 class="entry-title"><a href="#">요가로 체중 감량하기</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-21">November 13, 2018, posted</time>
+                                        <time class="entry-date" datetime="2018-12-21">2018-12-21 posted</time>
                                         <span>by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae...</p>
+                                    <p>핫요가로 이제부터 당신의 체중을 관리해보세요. 핫요가로 이제부터 당신의 체중을 관리해보세요. 핫요가로 이제부터 당신의 체중을 관리해보세요. 핫요가로 이제부터 당신의 체중을 관리해보세요. 핫요가로 이제부터 당신의 체중을 관리해보세요. </p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -125,13 +120,12 @@
 
                             <!-- Entry -->
                             <div class="entry">
-
                                 <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                 <div class="thumbnail-attachment testimonial-holder style-2">
 
                                     <div class="blockquote-holder testimonial">
                                         <blockquote class="align-center">
-                                            <p>Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet, tincidunt ac.</p>
+                                            <p>OOO업체가 당신의 정보를 알람하였습니다. 관심 회사를 확인해보세요.</p>
                                             <div class="author">John McCoist</div>
                                         </blockquote>
                                         <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
@@ -141,7 +135,7 @@
 
                                                 <div class="entry-meta">
 
-                                                    <time class="entry-date" datetime="2018-11-18">November 18, 2018, posted</time>
+                                                    <time class="entry-date" datetime="2018-11-18">2018-11-18 posted</time>
                                                     <span>by</span>
                                                     <a href="#" class="entry-cat">Admin</a>
 
@@ -166,7 +160,7 @@
 
                                     <div class="link-attachment">
                                         <div class="link-wrap">
-                                            <a href="#" class="link">Quisque diam lorem, interdum vitae.</a>
+                                            <a href="#" class="link">OOO님이 당신 회사에 관심을 표시했습니다.</a>
                                         </div>
                                         <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                         <div class="entry-body">
@@ -175,7 +169,7 @@
 
                                                 <div class="entry-meta">
 
-                                                    <time class="entry-date" datetime="2018-11-18">November 18, 2018, posted</time>
+                                                    <time class="entry-date" datetime="2018-11-18">2018-11-18 posted</time>
                                                     <span>by</span>
                                                     <a href="#" class="entry-cat">Admin</a>
 
@@ -204,17 +198,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">A Piece of Peace </a></h5>
+                                    <h5 class="entry-title"><a href="#">한 조각의 피자의 열량은 당신의 체중과 어떠한 상관관계가 있는가?</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-21">November 18, 2018, posted</time>
+                                        <time class="entry-date" datetime="2018-12-21">2018-12-21 posted</time>
                                         <span>by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit...</p>
+                                    <p>비단 한조각의 피자가 당신의 인생을 송두리째 망가뜨릴 수 있는 엄청난 열량을 보유하고 있다고 하더라도 그 모든 열량이 당신의 지방 조직에 축적되지는 않습니다..</p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -238,17 +232,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">A Day of Yoga Teacher Trainin</a></h5>
+                                    <h5 class="entry-title"><a href="#">매일매일 영상으로 요가선생님을 만나보아요</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-02">November 2, 2018, posted</time>
+                                        <time class="entry-date" datetime="2018-12-02">2018-12-02 posted</time>
                                         <span>by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet...</p>
+                                    <p>홈트레이닝이 요즘 부쩍 늘어나면서 간단하게 영상을 보면서 시간을 쪼개어 운동에 시간을 투자하시는 분들이 늘어나고 있는 추세입니다...</p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -269,17 +263,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">Why Yoga is Appropriate For Everyone</a></h5>
+                                    <h5 class="entry-title"><a href="#">왜 요가가 모두에게 적절한 운동이 되는가?</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-10-28">October 28, 2018,</time>
+                                        <time class="entry-date" datetime="2018-10-28">2018-10-28</time>
                                         <span>posted by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipisMauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet...</p>
+                                    <p>요가는 남녀노소 불문하고 누구나 쉽게 배우고 따라할 수가 있습니다. 너무 어려운 아사나를 따라하기보다 자신에게 맞는 아사나를 골라 배우시는 것이 좋습니다.</p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -303,17 +297,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">3 Ways to Find Happiness Everyday</a></h5>
+                                    <h5 class="entry-title"><a href="#">행복한 하루를 찾는 3가지 중요한 방법</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-21">October 21, 2018,</time>
+                                        <time class="entry-date" datetime="2018-12-21">2018-12-21</time>
                                         <span>posted by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Vestibulum sed ante. Donec sagittis euismod purus. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem... </p>
+                                    <p>당신에게 있어서 가장 소중한 것을 무엇인가요? 모두의 인생은 소중합니다. 당신이 소중한 존재이기에 행복한 하루하루를 보내기에 충분합니다. 자 그럼 그 방법을...</p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
@@ -334,17 +328,17 @@
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
 
-                                    <h5 class="entry-title"><a href="#">Top 8 Yoga Postures For Pregnant Women</a></h5>
+                                    <h5 class="entry-title"><a href="#">임신을 한 여성에게 가장 좋은 요가 자세 8가지 추천</a></h5>
                                     <div class="entry-meta">
 
-                                        <time class="entry-date" datetime="2018-12-21">October 18, 2018,</time>
+                                        <time class="entry-date" datetime="2018-12-21">2018-12-21</time>
                                         <span>posted by</span>
                                         <a href="#" class="entry-cat">Admin</a>
 
                                     </div>
-                                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur...</p>
+                                    <p>요가는 좋은 운동임에 분명하지만, 사람의 환경와 상황에 따라서 가장 좋은 자세가 있습니다. 그 자세를 잘 응용하면 좀 더 윤택한 삶이 가능해집니다 임산부를 위한 요가 이제부터 함께 알아볼까요?</p>
                                     <div class="flex-row justify-content-between">
-                                        <a href="#" class="btn btn-small btn-style-4">Read More</a>
+                                        <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
 
