@@ -1931,7 +1931,7 @@ button.account:before{
 .popup{
   z-index: 99;
   position: fixed;
-  top: 0;
+  top:  0;
   left: 0;
   text-align: center;
   width: 100%;
@@ -1939,14 +1939,25 @@ button.account:before{
   background: rgba(21,23,38,0.7);
 }
 
-  .popup .popup-inner{
-    position: relative;
-    margin-top: 15%;
-    width: 930px;
-    display: inline-block;
-    padding: 26px;
-    background: #fff;
-  }
+  /*.popup .popup-inner{*/
+    /*position: fixed;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin: -218px 0 0 -465px;*/
+    /*width: 930px;*/
+    /*display: inline-block;*/
+    /*padding: 26px;*/
+    /*background: #fff;*/
+  /*}*/
+.popup .popup-inner{
+  position: relative;
+  margin-top: 5%;
+
+  width: 930px;
+  display: inline-block;
+  padding: 26px;
+  background: #fff;
+}
 
   .popup .popup-inner img{
     width: 100%;

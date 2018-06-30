@@ -39,12 +39,12 @@
                             <!-- - - - - - - - - - - - - - Navigation - - - - - - - - - - - - - - - - -->
                             <nav id="main-navigation" class="main-navigation">
                                 <ul id="menu" class="clearfix">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">채용공고</a></li>
-                                    <li><a href="#">알림</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="#">구직공고</a></li>
+                                    <li><a href="#">구인공고</a></li>
                                     <li><a href="#">소식</a></li>
+                                    <li><a href="#">알림</a></li>
                                     <li><a href="#">내정보</a></li>
-                                    <li><a href="#">사이트맵</a></li>
                                 </ul>
                             </nav>
                             <!-- - - - - - - - - - - - - end Navigation - - - - - - - - - - - - - - - -->
@@ -54,7 +54,7 @@
                         <!-- account button -->
                         <button type="button" class="account popup-btn-login"></button>
                         <!-- shop button -->
-                        <a href="#" class="btn btn-big btn-style-3">회원가입</a>
+                        <a href="#" class="btn btn-big btn-style-3 popup-btn-sign">회원가입</a>
 
                     </div>
                 </div>

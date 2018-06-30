@@ -35,14 +35,14 @@
         </div>
 
         <ul class="menu-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">채용공고</a></li>
-            <li><a href="#">알림</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">구직공고</a></li>
+            <li><a href="#">구인공고</a></li>
             <li><a href="#">소식</a></li>
+            <li><a href="#">알림</a></li>
             <li><a href="#">내정보</a></li>
-            <li><a href="#">사이트맵</a></li>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보취급방침</a></li>
+            <li><a href="../agreement.php">이용약관</a></li>
+            <li><a href="../privacy.php">개인정보취급방침</a></li>
         </ul>
 
         <div class="copyright">
