@@ -8106,3 +8106,9 @@ button.account:before{
 [class*="footer"].style-4 .copyright{
   padding: 26px 0;
 }
+
+/* 201806 new */
+.agreement-area{
+  white-space: pre-line;
+}
+
