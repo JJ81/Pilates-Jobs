@@ -5,7 +5,7 @@
         <p>이미 계정을 가지고 계신가요? <a href="#" class="link-text var2 popup-btn-login">로그인</a></p>
 <!--        <a href="#" class="btn fb-btn btn-big">Sign Up With Facebook</a>-->
 <!--        <p class="content-element2">OR</p>-->
-        
+
         <form class="content-element2" method="post" action="#">
             <input type="email" placeholder="이메일 주소를 입력해주세요." required />
             <input type="text" placeholder="비밀번호를 입력해주세요." required />
