@@ -164,26 +164,17 @@
                                         </div>
                                         <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                         <div class="entry-body">
-
                                             <div class="flex-row justify-content-between">
-
                                                 <div class="entry-meta">
-
                                                     <time class="entry-date" datetime="2018-11-18">2018-11-18 posted</time>
                                                     <span>by</span>
                                                     <a href="#" class="entry-cat">Admin</a>
-
                                                 </div>
-
                                                 <a href="#" class="entry-icon"><i class="licon-share"></i></a>
-
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <!-- Entry -->
@@ -262,23 +253,18 @@
 
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
-
                                     <h5 class="entry-title"><a href="#">왜 요가가 모두에게 적절한 운동이 되는가?</a></h5>
                                     <div class="entry-meta">
-
                                         <time class="entry-date" datetime="2018-10-28">2018-10-28</time>
                                         <span>posted by</span>
                                         <a href="#" class="entry-cat">Admin</a>
-
                                     </div>
                                     <p>요가는 남녀노소 불문하고 누구나 쉽게 배우고 따라할 수가 있습니다. 너무 어려운 아사나를 따라하기보다 자신에게 맞는 아사나를 골라 배우시는 것이 좋습니다.</p>
                                     <div class="flex-row justify-content-between">
                                         <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <!-- Entry -->
@@ -287,16 +273,13 @@
                                 <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                 <div class="thumbnail-attachment">
                                     <div class="responsive-iframe">
-
                                         <iframe src="https://player.vimeo.com/video/169730736?title=0&amp;byline=0&amp;portrait=0&amp;color=dedede"></iframe>
-
                                     </div>
                                     <div class="entry-label">Video</div>
                                 </div>
 
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
-
                                     <h5 class="entry-title"><a href="#">행복한 하루를 찾는 3가지 중요한 방법</a></h5>
                                     <div class="entry-meta">
 
@@ -310,14 +293,11 @@
                                         <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <!-- Entry -->
                             <div class="entry">
-
                                 <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                 <div class="thumbnail-attachment video-holder">
                                     <a href="https://player.vimeo.com/video/169730736?title=0&amp;byline=0&amp;portrait=0&amp;color=dedede" class="video-btn" data-fancybox="video"></a>
@@ -327,27 +307,20 @@
 
                                 <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                 <div class="entry-body">
-
                                     <h5 class="entry-title"><a href="#">임신을 한 여성에게 가장 좋은 요가 자세 8가지 추천</a></h5>
                                     <div class="entry-meta">
-
                                         <time class="entry-date" datetime="2018-12-21">2018-12-21</time>
                                         <span>posted by</span>
                                         <a href="#" class="entry-cat">Admin</a>
-
                                     </div>
                                     <p>요가는 좋은 운동임에 분명하지만, 사람의 환경와 상황에 따라서 가장 좋은 자세가 있습니다. 그 자세를 잘 응용하면 좀 더 윤택한 삶이 가능해집니다 임산부를 위한 요가 이제부터 함께 알아볼까요?</p>
                                     <div class="flex-row justify-content-between">
                                         <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                         <a href="#" class="entry-icon"><i class="licon-share"></i></a>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
 
                     <ul class="pagination">
