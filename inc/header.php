@@ -1,3 +1,4 @@
+
 <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
 
 <header id="header" class="header sticky-header">
@@ -51,11 +52,15 @@
                         </div>
                         <!-- search button -->
                         <div class="search-holder"><button type="button" class="search-button"></button></div>
+
+                        <?php if(empty($_SESSION['user'])) {?>
                         <!-- account button -->
                         <button type="button" class="account popup-btn-login"></button>
                         <!-- shop button -->
                         <a href="#" class="btn btn-big btn-style-3 popup-btn-sign">회원가입</a>
-
+                        <?php }else{ ?>
+                        <a href="<?php echo ROOT;?>logout.php" class="btn btn-big btn-style-3">로그아웃</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

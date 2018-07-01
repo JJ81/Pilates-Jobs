@@ -6,9 +6,10 @@
 <!--        <a href="#" class="btn fb-btn btn-big">Sign Up With Facebook</a>-->
 <!--        <p class="content-element2">OR</p>-->
 
-        <form class="content-element2" method="post" action="#">
-            <input type="email" placeholder="이메일 주소를 입력해주세요." required />
-            <input type="text" placeholder="비밀번호를 입력해주세요." required />
+        <!-- TODO password 규칙관련 이메일 타당성 관련 팝업은 swal로 처리할 것. -->
+        <form class="content-element2" method="post" action="../response/res_register.php">
+            <input type="email" name="email" placeholder="이메일 주소를 입력해주세요." required />
+            <input type="password" name="password" placeholder="비밀번호를 입력해주세요." required />
             <button type="submit" class="btn btn-style-3 btn-big">회원가입</button>
         </form>
 

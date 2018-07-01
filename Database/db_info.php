@@ -12,17 +12,17 @@
 
 
 // LOCAL TO REAL
-//define("DB_HOST", "pilahaus.com");
-//define("DB_USER", "pportal");
-//define("DB_PASS", "pt00405@");
-//define("DB_NAME", "pportal");
-//define("DB_PORT", "3306");
-//define("DB_CHARSET", "utf8");
-
-// REAL - REAL
-define("DB_HOST", "localhost");
+define("DB_HOST", "pilahaus.com");
 define("DB_USER", "pportal");
 define("DB_PASS", "pt00405@");
 define("DB_NAME", "pportal");
 define("DB_PORT", "3306");
 define("DB_CHARSET", "utf8");
+
+// REAL - REAL
+//define("DB_HOST", "localhost");
+//define("DB_USER", "pportal");
+//define("DB_PASS", "pt00405@");
+//define("DB_NAME", "pportal");
+//define("DB_PORT", "3306");
+//define("DB_CHARSET", "utf8");

@@ -1,3 +1,10 @@
+<?php
+require_once('./autoload.php');
+require_once('./commons/config.php');
+require_once('./commons/utils.php');
+require_once('./commons/session.php');
+
+?>
 <!doctype html>
 <html lang="ko">
 <head>
