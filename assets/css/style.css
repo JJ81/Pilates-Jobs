@@ -8123,7 +8123,8 @@ button.account:before{
   white-space: pre-line;
 }
 
-.client-info-wrp{
+.client-info-wrp,
+.register-private-member{
   width: 800px;
   margin: 0 auto;
 }
