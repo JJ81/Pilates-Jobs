@@ -8123,3 +8123,32 @@ button.account:before{
   white-space: pre-line;
 }
 
+.client-info-wrp{
+  width: 800px;
+  margin: 0 auto;
+}
+
+.table-client-info{
+  border-top: 1px solid #ddd;
+}
+
+.table-client-info th, .table-client-info td{
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.table-client-info td .btn{
+  float: right;
+}
+
+
+.table-client-info .section-title{
+  background: #eee;
+}
+
+
+.center{
+  text-align: center;
+}
+
