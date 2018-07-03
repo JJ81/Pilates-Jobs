@@ -8153,3 +8153,21 @@ button.account:before{
   text-align: center;
 }
 
+.table-private-info{
+  border-top: 1px solid #ddd;
+}
+
+.table-private-info th,
+.table-private-info td{
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+
+
+
+
+
+
+

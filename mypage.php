@@ -87,8 +87,8 @@ $db=null;
                                         더 많은 혜택을 누릴 수가 있습니다.
                                     </p>
                                     <div>
-                                        <a href="<?php echo ROOT;?>register_member.php" class="btn">개인회원</a>
-                                        <a href="<?php echo ROOT;?>register_company.php" class="btn btn-style-3">기업회원</a>
+                                        <a href="<?php echo ROOT;?>register_member.php" class="btn btn-big">개인회원</a> &nbsp;&nbsp;
+                                        <a href="<?php echo ROOT;?>register_company.php" class="btn btn-big btn-style-3">기업회원</a>
                                     </div>
 
                                 </div>

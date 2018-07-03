@@ -45,7 +45,7 @@
                                     <li><a href="#">구인공고</a></li>
                                     <li><a href="#">소식</a></li>
                                     <li><a href="#">알림</a></li>
-                                    <li><a href="<?php echo ROOT;?>mypage.php">내정보</a></li>
+                                    <li><a href="../mypage.php">내정보</a></li>
                                 </ul>
                             </nav>
                             <!-- - - - - - - - - - - - - end Navigation - - - - - - - - - - - - - - - -->
