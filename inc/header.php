@@ -55,7 +55,8 @@
 
                         <?php if(empty($_SESSION['user'])) {?>
                         <!-- account button -->
-                        <button type="button" class="account popup-btn-login"></button>
+<!--                        <button type="button" class="account popup-btn-login">로그인</button>-->
+                            <a href="#" class="popup-btn-login">로그인</a>
                         <!-- shop button -->
                         <a href="#" class="btn btn-big btn-style-3 popup-btn-sign">회원가입</a>
                         <?php }else{ ?>

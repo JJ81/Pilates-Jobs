@@ -11,7 +11,7 @@
             <?php } ?>
         </ul>
     </div>
-    
+
     <!-- Widget -->
 <!--    <div class="widget">-->
 <!--        <form class="search-form">-->
