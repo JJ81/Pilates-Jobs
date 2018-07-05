@@ -1,5 +1,16 @@
 <aside id="sidebar" class="col-lg-4 col-md-12">
 
+
+    <div class="widget">
+        <h6 class="widget-title">공지사항</h6>
+        <ul>
+            <?php for($i=0,$size=count($notice);$i<$size;$i++){ ?>
+            <li>
+                <a href="#"><?php echo $notice[$i]['title']; ?></a>
+            </li>
+            <?php } ?>
+        </ul>
+    </div>
     <!-- Widget -->
     <div class="widget">
         <form class="search-form">

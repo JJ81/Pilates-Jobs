@@ -8,13 +8,34 @@ require_once('./commons/session.php');
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
-// 1. 블로그글 가져오기 최근 10개만 가져오기
+// 1. 구인 정보 모두 출력
+// TODO 구인정보 출력 및 입력 양식이 필요함.
+
+
+// 2. 공지사항 최근 조회 10개
+$notice_list_query=
+    "select * from `cms_board_notice` " .
+    "where `active` is true " .
+    "order by `id` desc " .
+    "limit 0, 10;";
+$notice=$db->query($notice_list_query);
+
+// 3. 이벤트 최근 10개
+
+
+
+// 4. 블로그글 최근 10개
 $blog_list_query=
     "select * from `cms_board_blog` " .
     "where `active` is true " .
     "order by `id` desc " .
     "limit 0, 10;";
 $blog=$db->query($blog_list_query);
+
+
+
+
+
 
 
 
@@ -94,7 +115,7 @@ $db=null;
                                                 <span>by</span>
                                                 <a href="#" class="entry-cat">관리자</a>
                                             </div>
-                                            <p>새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. </p>
+<!--                                            <p>새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. </p>-->
                                             <div class="flex-row justify-content-between">
                                                 <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                                 <a href="#" class="entry-icon"><i class="licon-share"></i></a>
@@ -127,7 +148,7 @@ $db=null;
                                                 <a href="#" class="entry-cat">관리자</a>
 
                                             </div>
-                                            <p>홈트레이닝이 요즘 부쩍 늘어나면서 간단하게 영상을 보면서 시간을 쪼개어 운동에 시간을 투자하시는 분들이 늘어나고 있는 추세입니다...</p>
+<!--                                            <p>홈트레이닝이 요즘 부쩍 늘어나면서 간단하게 영상을 보면서 시간을 쪼개어 운동에 시간을 투자하시는 분들이 늘어나고 있는 추세입니다...</p>-->
                                             <div class="flex-row justify-content-between">
                                                 <a href="#" class="btn btn-small btn-style-4">더보기</a>
                                                 <a href="#" class="entry-icon"><i class="licon-share"></i></a>

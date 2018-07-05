@@ -40,18 +40,18 @@
                             <!-- - - - - - - - - - - - - - Navigation - - - - - - - - - - - - - - - - -->
                             <nav id="main-navigation" class="main-navigation">
                                 <ul id="menu" class="clearfix">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="#">구직공고</a></li>
-                                    <li><a href="#">구인공고</a></li>
-                                    <li><a href="#">소식</a></li>
-                                    <li><a href="#">알림</a></li>
+<!--                                    <li><a href="/">Home</a></li>-->
+<!--                                    <li><a href="#">구직공고</a></li>-->
+<!--                                    <li><a href="#">구인공고</a></li>-->
+<!--                                    <li><a href="#">소식</a></li>-->
+<!--                                    <li><a href="#">알림</a></li>-->
                                     <li><a href="../mypage.php">내정보</a></li>
                                 </ul>
                             </nav>
                             <!-- - - - - - - - - - - - - end Navigation - - - - - - - - - - - - - - - -->
                         </div>
                         <!-- search button -->
-                        <div class="search-holder"><button type="button" class="search-button"></button></div>
+<!--                        <div class="search-holder"><button type="button" class="search-button"></button></div>-->
 
                         <?php if(empty($_SESSION['user'])) {?>
                         <!-- account button -->
