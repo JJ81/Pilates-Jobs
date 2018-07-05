@@ -1,3 +1,18 @@
+<?php
+require_once('./autoload.php');
+require_once('./commons/config.php');
+require_once('./commons/utils.php');
+require_once('./commons/session.php');
+
+// ROLE이 U일 경우에만 진입할 수 있도록 한다.
+if($_SESSION['role'] !== 'U'){
+    AlertMsgAndRedirectTo('/', '이미 가입된 회원입니다');
+    exit;
+}
+
+
+?>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -31,9 +46,9 @@
     <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
     <div class="breadcrumbs-wrap">
         <div class="container">
-            <h1 class="page-title">정식 개인 회원</h1>
+            <h1 class="page-title">개인 회원</h1>
             <ul class="breadcrumbs">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>개인회원</li>
             </ul>
         </div>
@@ -47,10 +62,10 @@
                 <main id="main" class="col-lg-12 col-md-12">
                     <div class="content-element5 register-private-member">
                         <div class="entry-box">
-                            <div>의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
+                            <div>* 의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
                             <!-- 개인 가입 입력창 -->
                             <form action="#" method="post">
-                                <table class="table">
+                                <table class="table table-private-info">
                                     <colgroup>
                                         <col width="30%" />
                                         <col width="70%" />
@@ -80,7 +95,7 @@
                                         </th>
                                         <td>
                                             <input type="tel" name="phone" placeholder="전화 번호를 입력하세요." required />
-                                            <a href="#" class="btn">본인인증</a>
+                                            <a href="#" class="btn" style="margin-top: 5px;">본인인증</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -113,13 +128,13 @@
                                         <th>이력서 등록</th>
                                         <td>
                                             <input type="file" name="resume" />
-                                            <small>이력서는 나중에 얼마든지 등록하실 수가 있으나, 구직중이신 경우 등록을 하시는 것이 좋습니다.</small>
+                                            <small>* 이력서는 이후에 등록이 가능하나, 구직중이신 경우 등록을 하시는 것을 추천드립니다.</small>
                                         </td>
                                     </tr>
                                 </table>
 
-                                <div class="center">
-                                    <button type="submit" class="btn">등록하기</button>
+                                <div class="center" style="padding: 10px 0;">
+                                    <button type="submit" class="btn btn-big btn-style-5">등록하기</button>
                                 </div>
 
                             </form>
