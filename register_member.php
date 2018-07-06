@@ -64,7 +64,7 @@ if($_SESSION['role'] !== 'U'){
                         <div class="entry-box">
                             <div>* 의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
                             <!-- 개인 가입 입력창 -->
-                            <form action="#" method="post" class="form-private-register" enctype="multipart/form-data">
+                            <form action="./response/res_reg_member.php" method="post" class="form-private-register" enctype="multipart/form-data">
                                 <table class="table table-private-info">
                                     <colgroup>
                                         <col width="25%" />
@@ -80,7 +80,6 @@ if($_SESSION['role'] !== 'U'){
                                                    name="realname"
                                                    class="field-name"
                                                    placeholder="실명을 입력해주세요."
-                                                   autocomplete="off"
                                                    autofocus
                                                    required />
                                         </td>
@@ -94,10 +93,10 @@ if($_SESSION['role'] !== 'U'){
                                     <tr>
                                         <th>성별</th>
                                         <td colspan="2">
-                                            <input type="radio" name="status" id="searching" value="S" checked />
+                                            <input type="radio" name="gender" id="searching" value="F" checked />
                                             <label for="searching">여</label>
 
-                                            <input type="radio" name="status" id="complete" value="C" />
+                                            <input type="radio" name="gender" id="complete" value="M" />
                                             <label for="complete">남</label>
                                         </td>
                                     </tr>
@@ -153,10 +152,9 @@ if($_SESSION['role'] !== 'U'){
                                     <tr>
                                         <td>
                                             <div class="dateWrp">
-                                                <!-- 모바일일때와 PC일 때를 구분하여 처리할 수 있어야 한다. -->
                                                 <input type="text" value="<?php echo getToday('Y-m-d');?>" class="license_dt" readonly />
                                                 <input type="date"
-                                                       name="get_license_dt"
+                                                       name="license_dt[]"
                                                        class="dateController"
                                                        min="1900-01-01"
                                                        max="2018-12-31"
@@ -165,7 +163,7 @@ if($_SESSION['role'] !== 'U'){
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" placeholder="자격증 명칭" name="license" class="field-license-name" />
+                                            <input type="text" placeholder="자격증 명칭" name="license_name[]" class="field-license-name" />
                                         </td>
                                         <td class="center">
                                             <a href="#" class="delete-btn-license" onclick="deleteLicense(this);">삭제</a>
@@ -184,7 +182,7 @@ if($_SESSION['role'] !== 'U'){
                                     <button type="submit" class="btn btn-big btn-style-5 js-btn-register">등록하기</button>
                                     <p>* 각 기입란을 다 채워주셔야 지원시 연결될 확율이 높습니다</p>
                                 </div>
-
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>" />
                             </form>
                         </div>
                     </div>
@@ -263,8 +261,8 @@ if($_SESSION['role'] !== 'U'){
                 return;
             }
 
-            alert('전송');
-            //formPrivate.submit();
+            // alert('전송');
+            formPrivate.submit();
         });
 
 
@@ -281,7 +279,7 @@ if($_SESSION['role'] !== 'U'){
                 "                                            <div class=\"dateWrp\">\n" +
                 "                                                <input type=\"text\" value=\"<?php echo getToday('Y-m-d');?>\" class=\"license_dt\" readonly />\n" +
                 "                                                <input type=\"date\"\n" +
-                "                                                       name=\"get_license_dt\"\n" +
+                "                                                       name=\"license_dt[]\"\n" +
                 "                                                       class=\"dateController\"\n" +
                 "                                                       min=\"1900-01-01\"\n" +
                 "                                                       max=\"2018-12-31\"\n" +
@@ -292,7 +290,7 @@ if($_SESSION['role'] !== 'U'){
                 "                                            </div>\n" +
                 "                                        </td>\n" +
                 "                                        <td>\n" +
-                "                                            <input type=\"text\" placeholder=\"자격증 명칭\" name=\"license\" class=\"field-license-name\" />\n" +
+                "                                            <input type=\"text\" placeholder=\"자격증 명칭\" name=\"license_name[]\" class=\"field-license-name\" />\n" +
                 "                                        </td>\n" +
                 "                                        <td class=\"center\">\n" +
                 "                                            <a href=\"#\" class=\"delete-btn-license\" onclick=\"deleteLicense(this);\">삭제</a>\n" +
@@ -354,6 +352,10 @@ if($_SESSION['role'] !== 'U'){
         console.log('삭제');
     }
 
+    $('.dateController').bind('change', function () {
+        // console.log($(this).val());
+        $(this).parent().find('.license_dt').val($(this).val());
+    });
 
 
 </script>

@@ -47,6 +47,10 @@ class DBConnection
 
     }
 
+    public function getDBINS(){
+        return $this->dbh;
+    }
+
     /**
      * @param $query
      * @return array or json TODO json으로 리턴을 해야 하는 경우도 별도로 처리할 것.
