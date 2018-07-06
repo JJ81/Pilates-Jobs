@@ -123,7 +123,10 @@ if($_SESSION['role'] !== 'U'){
                                             프로필
                                         </th>
                                         <td colspan="2">
-                                            <input type="file" name="thumbnail" class="field-thumbnail" />
+                                            <input type="file"
+                                                   name="thumbnail"
+                                                   class="field-thumbnail"
+                                                   accept="image/png, image/gif, image/jpg, image/jpeg" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -150,14 +153,15 @@ if($_SESSION['role'] !== 'U'){
                                     <tr>
                                         <td>
                                             <div class="dateWrp">
-                                                <input type="text" value="취득일" class="license_dt" readonly />
+                                                <!-- 모바일일때와 PC일 때를 구분하여 처리할 수 있어야 한다. -->
+                                                <input type="text" value="<?php echo getToday('Y-m-d');?>" class="license_dt" readonly />
                                                 <input type="date"
                                                        name="get_license_dt"
                                                        class="dateController"
                                                        min="1900-01-01"
                                                        max="2018-12-31"
-                                                       value="2018-07-07"
-                                                       placeholder="취득일" />
+                                                       value="<?php echo getToday('Y-m-d');?>"
+                                                       placeholder="취득일" <?php if(!isMobile()){ echo 'style="opacity:1;"';} ?> />
                                             </div>
                                         </td>
                                         <td>
@@ -217,84 +221,49 @@ if($_SESSION['role'] !== 'U'){
         btnSubmit.bind('click', function (e) {
             e.preventDefault();
 
-            // if(fieldName.val().trim() === '' ){
-            //     fieldName.focus();
-            //     alert('성명을 입력해주세요.');
-            //     return;
-            // }
-            //
-            // if(fieldBirth.val().trim() === ''){
-            //     fieldBirth.focus();
-            //     alert('생년월일을 입력하세요.');
-            //     return;
-            // }
-            //
-            // if(fieldPhone.val().trim() === ''){
-            //     fieldPhone.focus();
-            //     alert('연락처를 입력하세요.');
-            //     return;
-            // }
-            //
-            // if(fieldProfile.val().trim() === ''){
-            //     fieldProfile.focus();
-            //     alert('프로필을 입력해주세요.');
-            //     return;
-            // }
-            //
-            // if(fieldDesc.val().trim() === ''){
-            //     fieldDesc.focus();
-            //     alert('이력사항을 입력해주세요.');
-            //     return;
-            // }
-            //
-            // if(!check_agree.prop('checked')){
-            //     check_agree.focus();
-            //     alert('정보제공에 동의해주세요.');
-            //     return;
-            // }
+            if(fieldName.val().trim() === '' ){
+                fieldName.focus();
+                alert('성명을 입력해주세요.');
+                return;
+            }
 
+            if(fieldBirth.val().trim() === ''){
+                fieldBirth.focus();
+                alert('생년월일을 입력하세요.');
+                return;
+            }
 
+            if(fieldPhone.val().trim() === ''){
+                fieldPhone.focus();
+                alert('연락처를 입력하세요.');
+                return;
+            }
 
-            // $('.field-license-name')
-            // $('.license_dt')
-            // 각 필드를 돌면서 누락된 사항을 확인할 것.
+            if(fieldProfile.val().trim() === ''){
+                fieldProfile.focus();
+                alert('프로필을 입력해주세요.');
+                return;
+            }
 
-            // $('.license_dt').each(function (i, el){
-            //     console.info(  $(el).val().trim() );
-            //     if($(this).val().trim() === ''){
-            //         $(this).focus();
-            //         alert('자격증 취득일을 확인해주세요.');
-            //         return false;
-            //     }
-            //
-            // });
+            if(fieldDesc.val().trim() === ''){
+                fieldDesc.focus();
+                alert('이력사항을 입력해주세요.');
+                return;
+            }
 
-            // if(!isComplete){
-            //     return;
-            // }
-
-            // $('.field-license-name').each(function (i, el){
-            //     if($(this).val().trim() === ''){
-            //         $(this).focus();
-            //         alert('자격증 명칭을 입력해주세요.');
-            //         return false;
-            //     }
-            //     isComplete=true;
-            // });
-            //
-            // if(!isComplete){
-            //     return;
-            // }
 
             if(!checkLicenseInfo()){
                 alert('자격증 정보를 확인해주세요.');
                 return;
             }
 
+            if(!check_agree.prop('checked')){
+                check_agree.focus();
+                alert('정보제공에 동의해주세요.');
+                return;
+            }
 
             alert('전송');
-
-
             //formPrivate.submit();
         });
 
@@ -310,14 +279,16 @@ if($_SESSION['role'] !== 'U'){
             var new_el = "<tr>\n" +
                 "                                        <td>\n" +
                 "                                            <div class=\"dateWrp\">\n" +
-                "                                                <input type=\"text\" value=\"취득일\" class=\"license_dt\" readonly />\n" +
+                "                                                <input type=\"text\" value=\"<?php echo getToday('Y-m-d');?>\" class=\"license_dt\" readonly />\n" +
                 "                                                <input type=\"date\"\n" +
                 "                                                       name=\"get_license_dt\"\n" +
                 "                                                       class=\"dateController\"\n" +
                 "                                                       min=\"1900-01-01\"\n" +
                 "                                                       max=\"2018-12-31\"\n" +
-                "                                                       value=\"2018-07-07\"\n" +
-                "                                                       placeholder=\"취득일\" />\n" +
+                "                                                       value=\"<?php echo getToday('Y-m-d');?>\"\n" +
+                "                                                       placeholder=\"취득일\" <?php if (!isMobile()) {
+                    echo 'style=\"opacity:1;\"';
+                } ?>/>\n" +
                 "                                            </div>\n" +
                 "                                        </td>\n" +
                 "                                        <td>\n" +
@@ -339,31 +310,42 @@ if($_SESSION['role'] !== 'U'){
      * 2. 자격증 리스트를 추가할 경우 사용
      */
     function checkLicenseInfo(){
-        var isComplete=false;
+        var dtComplete=false;
+        var nameComplete=false;
 
         if($('.license_dt').length === 0){
+            console.log('check license dt 2');
+            dtComplete=false;
+            nameComplete=false;
             return true;
         }
 
         $('.license_dt').each(function (i, el){
+            console.log( $(this).val() );
             if($(this).val().trim() === ''){
+                console.log('check license dt 2');
+                dtComplete=false;
                 return false;
             }
+            dtComplete=true;
         });
-
-        if(!isComplete){
-            return isComplete;
-        }
 
         $('.field-license-name').each(function (i, el){
             if($(this).val().trim() === ''){
+                console.log('check license dt 4');
+                nameComplete=false;
                 return false;
             }
 
-            isComplete=true;
+            console.log('check license dt 5');
+            nameComplete=true;
         });
 
-        return isComplete;
+
+        console.log('check license dt 6');
+
+
+        return (dtComplete && nameComplete);
     }
 
     function deleteLicense(el){
@@ -371,6 +353,7 @@ if($_SESSION['role'] !== 'U'){
         $(el).parent().parent().remove();
         console.log('삭제');
     }
+
 
 
 </script>
