@@ -29,12 +29,23 @@ $db = new DBconn();
 
 
 $email = $_SESSION['user'];
-$query =
-    "select * from `cms_member` as `cm` " .
-    "left join `cms_business_info` as `cbi` " .
-    "on `cbi`.`cm_id` = `cm`.`id` " .
-    "where `cm`.`email`='j.lee@jcorporationtech.com';";
+//$query =
+//    "select * from `cms_member` as `cm` " .
+//    "left join `cms_business_info` as `cbi` " .
+//    "on `cbi`.`cm_id` = `cm`.`id` " .
+//    "where `cm`.`email`='$email';";
+
+$query="select * from `cms_member` where `email`='$email';";
 $row=$db->query($query);
+
+$_SESSION['role']=$row[0]['role'];
+$_SESSION['reg_type']=$row[0]['reg_type'];
+
+$user_id=$row[0]['id'];
+
+// 자격증 사항 조회하기
+$query_license="select * from `cms_license` where `user_id`=$user_id;";
+$license=$db->query($query_license);
 
 $db=null;
 ?>
@@ -93,9 +104,9 @@ $db=null;
 
                                 </div>
                                 <?php }else if($_SESSION['role'] == 'C'){ ?>
-                                    <div style="text-align: right;margin-bottom: 10px;">
-                                        <a href="#" class="btn btn-primary">정보수정</a>
-                                    </div>
+<!--                                    <div style="text-align: right;margin-bottom: 10px;">-->
+<!--                                        <a href="#" class="btn btn-primary">정보수정</a>-->
+<!--                                    </div>-->
 
                                     <?php for($i=0,$size=count($row);$i<$size;$i++) { ?>
                                         <!-- 개인회원인 경우 -->
@@ -197,23 +208,8 @@ $db=null;
                                                     <td colspan="2" class="center section-title">개인 정보</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>
-                                                        이름(실명)
-                                                    </th>
-                                                    <td><?php echo $row[$i]['realname'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>프로필</th>
-                                                    <td>
-                                                        <img src="https://www.catholic.edu/assets/images/default_profile.jpg" alt="" width="100" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>이메일</th>
-                                                    <td>
-                                                        <?php echo $row[$i]['email']; ?>
-                                                        <a href="#" class="btn">이메일 인증</a>
-                                                    </td>
+                                                    <th>성명</th>
+                                                    <td><?php echo $row[$i]['realname']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th>가입유형</th>
@@ -226,52 +222,84 @@ $db=null;
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <th>최초가입일</th>
+                                                    <td><?php echo $row[$i]['created_dt']; ?></td>
+                                                </tr>
+                                                <tr>
                                                     <th>비밀번호</th>
                                                     <td>
                                                         **********
-                                                        <a href="#" class="btn btn-link">비밀번호 수정</a>
+                                                        <a href="#" class="btn btn-link btn-style-3">비밀번호 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>연락처</th>
+                                                    <th>이메일</th>
+                                                    <td>
+                                                        <?php echo $row[$i]['email']; ?>
+                                                        <a href="#" class="btn btn-link btn-style-3">이메일 변경</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>생년월일</th>
+                                                    <td><?php echo $row[$i]['birthday']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>성별</th>
+                                                    <td>
+                                                        <?php if($row[$i]['gender'] == 'F'){ echo '여성';}else{ echo '남성';} ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>전화번호</th>
                                                     <td>
                                                         <?php echo $row[$i]['phone']; ?>
-                                                        <a href="#" class="btn">본인인증</a>
+                                                        <a href="#" class="btn btn-link btn-style-3">연락처 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>주소</th>
+                                                    <th>프로필</th>
                                                     <td>
-                                                        <?php echo $row[$i]['address'] ?>
-                                                        <a href="#" class="btn">주소변경</a>
+                                                        <img src="<?php echo ROOT; ?>upload/<?php echo $row[$i]['thumbnail']; ?>" alt="" width="150" onerror="this.src='https://www.catholic.edu/assets/images/default_profile.jpg'" />
+                                                        <a href="#" class="btn btn-link btn-style-3">사진 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>구직여부</th>
+                                                    <th>이력사항</th>
                                                     <td>
-                                                        구직중
-                                                        <a href="#" class="btn">변경</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>이력서 등록</th>
-                                                    <td>
-                                                        <a href="#">이력서</a>
-                                                        <a href="#" class="btn">재업로드</a>
+                                                        <div style="white-space: pre-line;"><?php echo $row[$i]['description']; ?></div>
+                                                        <a href="#" class="btn btn-link btn-style-3">이력사항 수정</a>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!-- TODO 개인회원은 자신을 잘 나타낼 수 있는 방식으로 개인 홈을 알차고 이쁘게 제공하면 좋을 듯하다!!! -->
-                                            <!-- TODO 이곳에 지원이력도 남길 수 있도록 한다. -->
-                                        <?php } ?>
 
-<!--                                        <table class="table">-->
-<!--                                            <tr>-->
-<!--                                                <th>사업장명</th>-->
-<!--                                                <th>사업장주소</th>-->
-<!--                                            </tr>-->
-<!--                                        </table>-->
-<!--                                        <a href="#" class="btn">사업장 추가</a>-->
+                                            <!-- 자격사항 테이블 표기 -->
+                                            <?php if(count($license) > 0){ ?>
+                                                <div style="margin-top: 10px;text-align: right;">
+                                                    <a href="#" class="btn btn-style-3">자격정보수정</a>
+                                                </div>
+                                                <table class="table tb-license table-client-info" style="margin-top: 10px;">
+                                                    <colgroup>
+                                                        <col width="30%" />
+                                                        <col width="70%" />
+                                                    </colgroup>
+                                                    <tr>
+                                                        <td colspan="2" class="center section-title">
+                                                            자격 사항
+                                                        </td>
+                                                    </tr>
+                                                    <?php for($i=0,$size=count($license);$i<$size;$i++){ ?>
+                                                    <tr>
+                                                        <td class="center"><?php echo $license[$i]['taken_dt']; ?></td>
+                                                        <td><?php echo $license[$i]['license_name'];?></td>
+                                                    </tr>
+                                                    <?php } ?>
+                                                </table>
+                                            <?php }?>
+
+
+                                           <!-- TODO 지원이력-->
+
+                                        <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                             </div>

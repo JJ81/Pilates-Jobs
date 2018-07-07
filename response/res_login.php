@@ -42,6 +42,7 @@ if(count($row) == 0){
         $_SESSION['user_id'] = $row[0]['id'];
         $_SESSION['user'] = $email; // 입력값
         $_SESSION['role'] = $row[0]['role'];
+        $_SESSION['reg_type']=$row[0]['reg_type'];
         $_SESSION['start'] = time();
         // TODO 로그아웃 시간을 두지 않도록 설정하는 설정을 추가할 것.
         $_SESSION['expire'] = $_SESSION['start'] + SESS_DURATION;
