@@ -54,7 +54,7 @@ try{
     $db->getDBINS()->beginTransaction();
 
     // TODO 이미지가 새로 업로드 되었을 때와 아닐 때 쿼리를 구분해야 한다.
-    
+
 
     $personal_info=
         "update `cms_member` " .
