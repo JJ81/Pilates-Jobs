@@ -53,12 +53,14 @@ $db = new DBconn();
 try{
     $db->getDBINS()->beginTransaction();
 
+    // TODO 이미지가 새로 업로드 되었을 때와 아닐 때 쿼리를 구분해야 한다.
+    
+
     $personal_info=
         "update `cms_member` " .
         "set `realname`='$realname', `birthday`='$birthday', `thumbnail`='$newImgName', " .
         "`phone`='$phone', `gender`='$gender', `description`='$description', `role`='$role', `reg_type`='$reg_type' ".
         "where `id`=$user_id;";
-// TODO `role`=$role, `reg_type`=$reg_type, 이 컬럼에 입력을 할 때 문제가 발생하고 있다.
 
     echo $personal_info;
 
@@ -67,6 +69,12 @@ try{
     if($result == 0){
         throw new Exception('Failed to update new personal info.');
     }
+
+
+
+    // TODO license 테이블 아이디를 받아서 해당 정보를 업데이트할 수 있도록 한다.
+    // TODO 결국 license_id를 더 받아와야 한다.
+    // TODO 벌크 업데이트를 하는 방법을 알아보자.
 
     // for문을 통해서 인서트문을 완성하고
     $input_license=
@@ -97,25 +105,8 @@ try{
     $db->getDBINS()->rollBack();
     error_log($e);
     $db=null;
-    // AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
+    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
 }
-
-
-// 트랜잭션 처리를 해야 한다.
-// 0. 프로필 이미지를 업로드한다.
-// 1. 개인관련정보를 모두 입력한다.
-// 2. 이를 완성하면 자격증 관련 정보를 입력한다.
-
-
-// 추가된 이력서가 있을 경우 즉 배열이 0이상일 경우에만 아래의 로직을 수행할 수 있도록 한다.
-//for($i=0,$size=count($license_dt);$i<$size;$i++){
-//    echo  $license_dt[$i] . '<br />';
-//}
-//
-//for($i=0,$size=count($license_name);$i<$size;$i++){
-//    echo  $license_name[$i] . '<br />';
-//}
-
 
 
 ?>

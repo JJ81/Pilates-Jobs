@@ -58,9 +58,8 @@ try{
         "set `realname`='$realname', `birthday`='$birthday', `thumbnail`='$newImgName', " .
         "`phone`='$phone', `gender`='$gender', `description`='$description', `role`='$role', `reg_type`='$reg_type' ".
         "where `id`=$user_id;";
-// TODO `role`=$role, `reg_type`=$reg_type, 이 컬럼에 입력을 할 때 문제가 발생하고 있다.
 
-    echo $personal_info;
+    //echo $personal_info;
 
     $result = $db->update($personal_info);
 
@@ -97,25 +96,7 @@ try{
     $db->getDBINS()->rollBack();
     error_log($e);
     $db=null;
-    // AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
+    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
 }
-
-
-// 트랜잭션 처리를 해야 한다.
-// 0. 프로필 이미지를 업로드한다.
-// 1. 개인관련정보를 모두 입력한다.
-// 2. 이를 완성하면 자격증 관련 정보를 입력한다.
-
-
-// 추가된 이력서가 있을 경우 즉 배열이 0이상일 경우에만 아래의 로직을 수행할 수 있도록 한다.
-//for($i=0,$size=count($license_dt);$i<$size;$i++){
-//    echo  $license_dt[$i] . '<br />';
-//}
-//
-//for($i=0,$size=count($license_name);$i<$size;$i++){
-//    echo  $license_name[$i] . '<br />';
-//}
-
-
 
 ?>

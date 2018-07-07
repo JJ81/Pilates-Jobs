@@ -104,10 +104,6 @@ $db=null;
 
                                 </div>
                                 <?php }else if($_SESSION['role'] == 'C'){ ?>
-<!--                                    <div style="text-align: right;margin-bottom: 10px;">-->
-<!--                                        <a href="#" class="btn btn-primary">정보수정</a>-->
-<!--                                    </div>-->
-
                                     <?php for($i=0,$size=count($row);$i<$size;$i++) { ?>
                                         <!-- 개인회원인 경우 -->
                                         <?php if($row[$i]['reg_type'] == "B"){ ?>
@@ -199,6 +195,9 @@ $db=null;
                                                 </tr>
                                             </table>
                                         <?php }else if($row[$i]['reg_type'] == "P"){ ?>
+                                            <div style="text-align: right;margin-bottom: 10px;">
+                                                <a href="./modify_member.php" class="btn btn-primary">정보수정</a>
+                                            </div>
                                             <table class="table table-client-info">
                                                 <colgroup>
                                                     <col width="30%" />
@@ -228,7 +227,6 @@ $db=null;
                                                 <tr>
                                                     <th>비밀번호</th>
                                                     <td>
-                                                        **********
                                                         <a href="#" class="btn btn-link btn-style-3">비밀번호 변경</a>
                                                     </td>
                                                 </tr>
@@ -236,7 +234,7 @@ $db=null;
                                                     <th>이메일</th>
                                                     <td>
                                                         <?php echo $row[$i]['email']; ?>
-                                                        <a href="#" class="btn btn-link btn-style-3">이메일 변경</a>
+<!--                                                        <a href="#" class="btn btn-link btn-style-3">이메일 변경</a>-->
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -253,31 +251,28 @@ $db=null;
                                                     <th>전화번호</th>
                                                     <td>
                                                         <?php echo $row[$i]['phone']; ?>
-                                                        <a href="#" class="btn btn-link btn-style-3">연락처 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>프로필</th>
                                                     <td>
                                                         <img src="<?php echo ROOT; ?>upload/<?php echo $row[$i]['thumbnail']; ?>" alt="" width="150" onerror="this.src='https://www.catholic.edu/assets/images/default_profile.jpg'" />
-                                                        <a href="#" class="btn btn-link btn-style-3">사진 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>이력사항</th>
                                                     <td>
                                                         <div style="white-space: pre-line;"><?php echo $row[$i]['description']; ?></div>
-                                                        <a href="#" class="btn btn-link btn-style-3">이력사항 수정</a>
                                                     </td>
                                                 </tr>
                                             </table>
 
                                             <!-- 자격사항 테이블 표기 -->
                                             <?php if(count($license) > 0){ ?>
-                                                <div style="margin-top: 10px;text-align: right;">
-                                                    <a href="#" class="btn btn-style-3">자격정보수정</a>
-                                                </div>
-                                                <table class="table tb-license table-client-info" style="margin-top: 10px;">
+<!--                                                <div style="margin-top: 10px;text-align: right;">-->
+<!--                                                    <a href="#" class="btn btn-style-3">자격정보수정</a>-->
+<!--                                                </div>-->
+                                                <table class="table tb-license table-client-info" style="margin-top: 20px;">
                                                     <colgroup>
                                                         <col width="30%" />
                                                         <col width="70%" />
@@ -298,7 +293,28 @@ $db=null;
 
 
                                            <!-- TODO 지원이력-->
-
+                                            <table class="table tb-license table-client-info" style="margin-top: 20px;">
+                                                <colgroup>
+                                                    <col width="30%" />
+                                                    <col width="50%" />
+                                                    <col width="20%">
+                                                </colgroup>
+                                                <tr>
+                                                    <td colspan="3" class="center section-title">
+                                                        지원 이력
+                                                    </td>
+                                                </tr>
+<!--                                                <tr>-->
+<!--                                                    <td colspan="3" class="center">아직 지원한 이력이 없습니다.</td>-->
+<!--                                                </tr>-->
+                                                <tr>
+                                                    <td class="center">2018-07-07</td>
+                                                    <td>OO필라테스</td>
+                                                    <th>
+                                                        <a href="#" class="btn btn-style-5">지원취소</a>
+                                                    </th>
+                                                </tr>
+                                            </table>
                                         <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
