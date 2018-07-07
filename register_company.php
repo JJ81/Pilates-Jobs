@@ -53,7 +53,7 @@ if($_SESSION['role'] !== 'U'){
                         <div class="entry-box">
                             <div>* 의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
                             <!-- 개인 가입 입력창 -->
-                            <form action="#" method="post">
+                            <form action="./response/res_reg_company.php" method="post" enctype="multipart/form-data" class="form-register-company">
                                 <table class="table table-private-info">
                                     <colgroup>
                                         <col width="30%" />
@@ -66,6 +66,7 @@ if($_SESSION['role'] !== 'U'){
                                         <td>
                                             <input type="text"
                                                    name="realname"
+                                                   class="field-name"
                                                    placeholder="상호명 입력해주세요."
                                                    autocomplete="off"
                                                    autofocus
@@ -77,63 +78,62 @@ if($_SESSION['role'] !== 'U'){
                                             전화번호
                                         </th>
                                         <td>
-                                            <input type="tel" name="phone" placeholder="전화 번호를 입력하세요." required />
+                                            <input type="tel" name="phone" class="field-phone" placeholder="전화 번호를 입력하세요." required />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>이메일</th>
                                         <td>
-                                            j.lee@jcorporationtech.com
-                                            <a href="#" class="btn">이메일 일증</a>
-                                            <a href="#" class="btn">이메일 변경</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            상호로고
-                                        </th>
-                                        <td>
-                                            <input type="file" name="logo" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>사업자등록증</th>
-                                        <td>
-                                            <input type="file" name="business_sheet" required />
+                                            <?php echo $_SESSION['user']; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>사업자번호</th>
                                         <td>
-                                            <input type="text" name="business_number" placeholder="사업자번호를 입력해주세요." />
+                                            <input type="text" name="business_number" class="field-business-number" placeholder="사업자번호를 입력해주세요." />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>회사소개</th>
                                         <td>
-                                            <textarea name="" id="" cols="30" rows="10" required></textarea>
+                                            <textarea name="description" class="field-description" id="" cols="30" rows="10" required></textarea>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th rowspan="2">회사주소</th>
+                                        <th>홈페이지 주소</th>
                                         <td>
-                                            <select name="" id="">
-                                                <option value="">지역선택</option>
-                                            </select>
-                                            <select name="" id="">
-                                                <option value="">세부지역선택</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text" placeholder="상세주소" required />
+                                            <input type="text" name="homepage" placeholder="홈페이지 주소" />
                                         </td>
                                     </tr>
                                 </table>
 
+                                <!-- 회사 사업장 명칭 및 주소 입력 -->
+                                <table class="table tb-license">
+                                    <col width="30%">
+                                    <col width="60%">
+                                    <col width="10%">
+                                    <tr>
+                                        <td colspan="3" class="center section-title">사업장 정보</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="business_name[]" placeholder="사업장명, 지정명" class="field-branch-name" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="address[]" placeholder="주소를 입력해주세요." class="field-branch-addr" />
+                                        </td>
+                                        <td class="center">
+                                            <a href="#" class="delete-btn-license" onclick="deleteAddressInfo(this);">삭제</a>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div style="margin-top: 10px;text-align: right;">
+                                    <a href="#" class="btn btn-sm js-btn-add-addr">사업장 추가</a>
+                                </div>
+
                                 <div class="center" style="padding: 10px 0;">
-                                    <button type="submit" class="btn btn-big btn-style-5">등록하기</button>
+                                    <button type="submit" class="btn btn-big btn-style-5 js-btn-register-com">등록하기</button>
                                 </div>
 
                             </form>
@@ -152,6 +152,64 @@ if($_SESSION['role'] !== 'U'){
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
+<script>
+    (function ($) {
+        var formCompany = $('.form-register-company');
+        var btnSubmit = $('.js-btn-register-com');
+        var btnAddAddr = $('.js-btn-add-addr');
 
+        var fieldName = $('.field-name');
+        var fieldPhone = $('.field-phone');
+        var fieldBusinessNumber = $('.field-business-number');
+        var fieldDesc = $('.field-description');
+
+
+
+        btnAddAddr.bind('click', function (e) {
+            e.preventDefault();
+            var new_el="<tr>\n" +
+                "                                        <td>\n" +
+                "                                            <input type=\"text\" name=\"business_name[]\" placeholder=\"사업장명, 지정명 \"/>\n" +
+                "                                        </td>\n" +
+                "                                        <td>\n" +
+                "                                            <input type=\"text\" name=\"address[]\" placeholder=\"주소를 입력해주세요.\" />\n" +
+                "                                        </td>\n" +
+                "                                        <td class=\"center\">\n" +
+                "                                            <a href=\"#\" class=\"delete-btn-license\" onclick=\"deleteAddressInfo(this);\">삭제</a>\n" +
+                "                                        </td>\n" +
+                "                                    </tr>";
+            $('.tb-license').append(new_el);
+        });
+
+
+        btnSubmit.bind('click', function (e) {
+            e.preventDefault();
+
+            // 상호명
+
+            // 연락처
+
+            // 사업자번호
+
+            // 회사소개
+
+
+            // 별도의 함수로 체크할 수 있도록 할 것.
+            // 사업장 정보 입력 여부, 최소한 1개 이상 입력이 되어야 등록이 될 수 있도록 할 것.
+
+
+
+
+        });
+
+
+
+    } (jQuery));
+
+    function deleteAddressInfo(el){
+        window.event.preventDefault();
+        $(el).parent().parent().remove();
+    }
+</script>
 </body>
 </html>
