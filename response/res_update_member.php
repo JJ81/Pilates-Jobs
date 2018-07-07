@@ -5,8 +5,8 @@ require_once('../commons/utils.php');
 require_once('../commons/session.php');
 
 
-if($_SESSION['role'] !== 'U'){
-    AlertMsgAndRedirectTo(ROOT. 'mypage.php', '이미 정식 가입된 회원입니다.');
+if($_SESSION['role'] !== 'C'){
+    AlertMsgAndRedirectTo(ROOT. 'mypage.php', '잘못된 접근입니다.');
     exit;
 }
 
@@ -25,6 +25,8 @@ $description=getDataByPost('description');
 // 하단은 여러개를 받아서 넘어올 수가 있다.
 $license_dt=$_POST['license_dt'];
 $license_name=$_POST['license_name'];
+$license_id=$_POST['license_id'];
+
 $role="C";
 $reg_type="P";
 
@@ -53,59 +55,68 @@ $db = new DBconn();
 try{
     $db->getDBINS()->beginTransaction();
 
-    // TODO 이미지가 새로 업로드 되었을 때와 아닐 때 쿼리를 구분해야 한다.
 
-
-    $personal_info=
-        "update `cms_member` " .
-        "set `realname`='$realname', `birthday`='$birthday', `thumbnail`='$newImgName', " .
-        "`phone`='$phone', `gender`='$gender', `description`='$description', `role`='$role', `reg_type`='$reg_type' ".
-        "where `id`=$user_id;";
-
-    echo $personal_info;
+    // 새로운 썸네일이 업로드되었는지에 따라 쿼리 변경
+    if($newImgName == null){
+        $personal_info=
+            "update `cms_member` " .
+            "set `realname`='$realname', `birthday`='$birthday', " .
+            "`phone`='$phone', `gender`='$gender', `description`='$description' ".
+            "where `id`=$user_id;";
+    }else{
+        $personal_info=
+            "update `cms_member` " .
+            "set `realname`='$realname', `birthday`='$birthday', `thumbnail`='$newImgName', " .
+            "`phone`='$phone', `gender`='$gender', `description`='$description' ".
+            "where `id`=$user_id;";
+    }
 
     $result = $db->update($personal_info);
 
-    if($result == 0){
-        throw new Exception('Failed to update new personal info.');
-    }
+//    if($result == 0){
+//        throw new Exception('Failed to update new personal info.');
+//    }
 
-
-
-    // TODO license 테이블 아이디를 받아서 해당 정보를 업데이트할 수 있도록 한다.
-    // TODO 결국 license_id를 더 받아와야 한다.
-    // TODO 벌크 업데이트를 하는 방법을 알아보자.
-
-    // for문을 통해서 인서트문을 완성하고
-    $input_license=
-        "insert into `cms_license` (`user_id`, `taken_dt`, `license_name`) values";
 
     for($i=0,$size=count($license_dt);$i<$size;$i++){
-        if($i !== ($size-1)){
-            $input_license .= "($user_id, '$license_dt[$i]','$license_name[$i]'),";
+        // 라이센스 아이디가 있는 경우는 업데이트
+        if($license_id[$i]){
+            $input_license=
+                "update `cms_license` set `taken_dt`='$license_dt[$i]', `license_name`='$license_name[$i]' where `id`=$license_id[$i]";
+            $result = $db->update($input_license);
         }else{
-            $input_license .= "($user_id, '$license_dt[$i]','$license_name[$i]');";
+
+            // 라이센스 아이디가 없는 경우는 추가
+            $input_license=
+                "insert into `cms_license` (`user_id`, `taken_dt`, `license_name`) values";
+
+            if($i !== ($size-1)){
+                $input_license .= "($user_id, '$license_dt[$i]','$license_name[$i]'),";
+            }else{
+                $input_license .= "($user_id, '$license_dt[$i]','$license_name[$i]');";
+            }
+
+
+            $insertId = $db->insert($input_license, null);
+
+            if(!$insertId){
+                throw new Exception('Failed to insert license info.');
+            }
         }
     }
 
-    $insertId = $db->insert($input_license, null);
-
-    // echo $insertId;
-
-    if(!$insertId){
-        throw new Exception('Failed to insert license info.');
-    }
 
     $db->getDBINS()->commit();
     $db=null;
 
-    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '개인 회원 가입이 완료되었습니다.');
+    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '정보가 수정되었습니다.');
 
 }catch(Exception $e){
     $db->getDBINS()->rollBack();
     error_log($e);
+    echo $e;
     $db=null;
-    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
+    // AlertMsgAndRedirectTo(ROOT . 'mypage.php', '처리도중 에러가 발생하였습니다. 다시 시도해주세요.');
 }
 
 

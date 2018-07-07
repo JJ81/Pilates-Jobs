@@ -80,7 +80,7 @@ $db=null;
                         <div class="entry-box">
                             <div>* 의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
                             <!-- 개인 가입 입력창 -->
-                            <form action="./response/res_reg_member.php" method="post" class="form-private-register" enctype="multipart/form-data">
+                            <form action="./response/res_update_member.php" method="post" class="form-private-register" enctype="multipart/form-data">
                                 <?php for($i=0,$size=count($row);$i<$size;$i++) { ?>
                                 <table class="table table-private-info">
                                     <colgroup>
@@ -193,13 +193,13 @@ $db=null;
                                     <a href="#" class="btn btn-sm js-btn-add-license">자격증 추가</a>
                                 </div>
 
-                                <div style="margin-top: 20px;">
-                                    <input type="checkbox" id="agree_info" />
-                                    <label for="agree_info">상기 회원 정보는 구인공고에 지원시, 구인 사업장 요청시 해당 사업장만에 제공됩니다. 동의하십니까?</label>
-                                </div>
+<!--                                <div style="margin-top: 20px;">-->
+<!--                                    <input type="checkbox" id="agree_info" />-->
+<!--                                    <label for="agree_info">상기 회원 정보는 구인공고에 지원시, 구인 사업장 요청시 해당 사업장만에 제공됩니다. 동의하십니까?</label>-->
+<!--                                </div>-->
                                 <div class="center" style="padding: 10px 0;">
-                                    <button type="submit" class="btn btn-big btn-style-5 js-btn-register">등록하기</button>
-                                    <p>* 각 기입란을 다 채워주셔야 지원시 연결될 확율이 높습니다</p>
+                                    <button type="submit" class="btn btn-big btn-style-5 js-btn-register">수정하기</button>
+<!--                                    <p>* 각 기입란을 다 채워주셔야 지원시 연결될 확율이 높습니다</p>-->
                                 </div>
                                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>" />
                             </form>
@@ -256,11 +256,11 @@ $db=null;
                 return;
             }
 
-            if(fieldProfile.val().trim() === ''){
-                fieldProfile.focus();
-                alert('프로필을 입력해주세요.');
-                return;
-            }
+//            if(fieldProfile.val().trim() === ''){
+//                fieldProfile.focus();
+//                alert('프로필을 입력해주세요.');
+//                return;
+//            }
 
             if(fieldDesc.val().trim() === ''){
                 fieldDesc.focus();
@@ -274,11 +274,11 @@ $db=null;
                 return;
             }
 
-            if(!check_agree.prop('checked')){
-                check_agree.focus();
-                alert('정보제공에 동의해주세요.');
-                return;
-            }
+//            if(!check_agree.prop('checked')){
+//                check_agree.focus();
+//                alert('정보제공에 동의해주세요.');
+//                return;
+//            }
 
             // alert('전송');
             formPrivate.submit();
