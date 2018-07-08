@@ -20,32 +20,23 @@ if(empty($_SESSION['user'])){
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
-// TODO 사업장 정보가 여러 개일 경우 테스트를 해볼 것
-
-// TODO ROLE이 C일 경우에만 아래 쿼리를 조회할 수 있도록 한다.
-
-// TODO "정식 가입을 하고 더 많은 혜택을 누리세요." => 정식 가입을 통한 디비 수집을 유도할 수 있도록 한다.
-
-
-
 $email = $_SESSION['user'];
-//$query =
-//    "select * from `cms_member` as `cm` " .
-//    "left join `cms_business_info` as `cbi` " .
-//    "on `cbi`.`cm_id` = `cm`.`id` " .
-//    "where `cm`.`email`='$email';";
 
 $query="select * from `cms_member` where `email`='$email';";
 $row=$db->query($query);
 
 $_SESSION['role']=$row[0]['role'];
 $_SESSION['reg_type']=$row[0]['reg_type'];
-
 $user_id=$row[0]['id'];
 
-// 자격증 사항 조회하기
-$query_license="select * from `cms_license` where `user_id`=$user_id;";
-$license=$db->query($query_license);
+
+if($_SESSION['reg_type'] == 'P'){
+    $query_license="select * from `cms_license` where `user_id`=$user_id;";
+    $license=$db->query($query_license);
+}else if($_SESSION['reg_type'] == 'B'){
+    $query_address="select * from `cms_business_info` where `cm_id`=$user_id;";
+    $address=$db->query($query_address);
+}
 
 $db=null;
 ?>
@@ -105,9 +96,11 @@ $db=null;
                                 </div>
                                 <?php }else if($_SESSION['role'] == 'C'){ ?>
                                     <?php for($i=0,$size=count($row);$i<$size;$i++) { ?>
-                                        <!-- 개인회원인 경우 -->
                                         <?php if($row[$i]['reg_type'] == "B"){ ?>
                                             <!-- 기업회원인 경우 -->
+                                            <div style="text-align: right;margin-bottom: 10px;">
+                                                <a href="./modify_company.php" class="btn btn-primary">정보수정</a>
+                                            </div>
                                             <table class="table table-client-info">
                                                 <colgroup>
                                                     <col width="30%" />
@@ -117,22 +110,17 @@ $db=null;
                                                     <td colspan="2" class="center section-title">기업 정보</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>
-                                                        상호명
-                                                    </th>
-                                                    <td><?php echo $row[$i]['business_name']; ?></td>
+                                                    <th>상호명</th>
+                                                    <td><?php echo $row[$i]['business_name'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>상호로고</th>
-                                                    <td>
-                                                        <img src="https://www.catholic.edu/assets/images/default_profile.jpg" alt="" width="100" />
-                                                    </td>
+                                                    <th>사업자번호</th>
+                                                    <td><?php echo $row[$i]['business_number'] ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th>이메일</th>
                                                     <td>
                                                         <?php echo $row[$i]['email']; ?>
-                                                        <a href="#" class="btn">이메일 인증</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -144,7 +132,6 @@ $db=null;
                                                 <tr>
                                                     <th>비밀번호</th>
                                                     <td>
-                                                        **********
                                                         <a href="#" class="btn btn-link">비밀번호 수정</a>
                                                     </td>
                                                 </tr>
@@ -154,46 +141,39 @@ $db=null;
                                                         <?php echo $row[$i]['phone']; ?>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th>사업자번호</th>
-                                                    <td>849-05-00337</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>사업자등록증</th>
-                                                    <td>
-                                                        <img src="" alt="" />
-                                                        <a href="#" class="btn">사업자등록증 변경</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>사업장 주소</th>
-                                                    <td>
-                                                        <?php echo $row[$i]['address'] ?>
-                                                        <a href="#" class="btn">주소변경</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>상호명</th>
-                                                    <td><?php echo $row[$i]['business_name'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>사업자번호</th>
-                                                    <td><?php echo $row[$i]['business_number'] ?></td>
-                                                </tr>
+
                                                 <tr>
                                                     <th>회사소개</th>
                                                     <td>
                                                         <div style="white-space: pre-line;"><?php echo $row[$i]['description'] ?></div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th rowspan="2">회사주소</th>
-                                                    <td>
-                                                        <div>서울시 노원구 상계동</div>
-                                                        <a href="#" class="btn">주소지 변경</a>
-                                                    </td>
-                                                </tr>
                                             </table>
+
+                                            <!-- 사업장 정보 -->
+                                            <?php if(count($address) > 0){ ?>
+                                                <table class="table tb-license table-client-info" style="margin-top: 20px;">
+                                                    <colgroup>
+                                                        <col width="30%" />
+                                                        <col width="70%" />
+                                                    </colgroup>
+                                                    <tr>
+                                                        <td colspan="2" class="center section-title">
+                                                            사업장 정보
+                                                        </td>
+                                                    </tr>
+                                                    <?php for($i=0,$size=count($address);$i<$size;$i++){ ?>
+                                                        <tr>
+                                                            <td class="center"><?php echo $address[$i]['business_name']; ?></td>
+                                                            <td><?php echo $address[$i]['address'];?></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </table>
+                                            <?php }?>
+
+                                            <!-- TODO 구인공고를 낸 정보 출력/입력/수정/삭제  -->
+                                            <!-- TODO 지원자 리스트 출력 / 열람 -->
+
                                         <?php }else if($row[$i]['reg_type'] == "P"){ ?>
                                             <div style="text-align: right;margin-bottom: 10px;">
                                                 <a href="./modify_member.php" class="btn btn-primary">정보수정</a>
@@ -269,9 +249,6 @@ $db=null;
 
                                             <!-- 자격사항 테이블 표기 -->
                                             <?php if(count($license) > 0){ ?>
-<!--                                                <div style="margin-top: 10px;text-align: right;">-->
-<!--                                                    <a href="#" class="btn btn-style-3">자격정보수정</a>-->
-<!--                                                </div>-->
                                                 <table class="table tb-license table-client-info" style="margin-top: 20px;">
                                                     <colgroup>
                                                         <col width="30%" />
@@ -292,7 +269,7 @@ $db=null;
                                             <?php }?>
 
 
-                                           <!-- TODO 지원이력-->
+                                           <!-- TODO 지원 이력 / 지원 취소 -->
                                             <table class="table tb-license table-client-info" style="margin-top: 20px;">
                                                 <colgroup>
                                                     <col width="30%" />

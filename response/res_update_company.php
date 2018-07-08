@@ -5,8 +5,8 @@ require_once('../commons/utils.php');
 require_once('../commons/session.php');
 
 
-if($_SESSION['role'] !== 'U'){
-    AlertMsgAndRedirectTo(ROOT. 'mypage.php', '이미 정식 가입된 회원입니다.');
+if($_SESSION['role'] !== 'C'){
+    AlertMsgAndRedirectTo(ROOT. 'mypage.php', '잘못된 접근입니다.');
     exit;
 }
 
@@ -25,6 +25,7 @@ $homepage=getDataByPost('homepage');
 // 사업장정보
 $business_name=$_POST['business_name'];
 $business_addr=$_POST['address'];
+$address_id=$_POST['address_id'];
 
 $role="C";
 $reg_type="B";
@@ -39,36 +40,40 @@ try{
     $biz_info=
         "update `cms_member` " .
         "set `business_name`='$realname', `phone`='$phone', `business_number`='$business_number', ".
-        "`homepage`='$homepage', `description`='$description', `role`='$role', `reg_type`='$reg_type' ".
+        "`homepage`='$homepage', `description`='$description' ".
         "where `id`=$user_id;";
 
     $result = $db->update($biz_info);
 
-    if($result == 0){
-        throw new Exception('Failed to update new business info.');
-    }
-
-    $input_biz_info=
-        "insert into `cms_business_info` (`cm_id`, `business_name`, `address`) values";
 
     for($i=0,$size=count($business_name);$i<$size;$i++){
-        if($i !== ($size-1)){
-            $input_biz_info .= "($user_id, '$business_name[$i]','$business_addr[$i]'),";
+        if($address_id[$i]){
+            $input_biz_info=
+                "update `cms_business_info` set `business_name`='$business_name[$i]', `address`='$business_addr[$i]' where `id`=$address_id[$i]";
+            $result = $db->update($input_biz_info);
         }else{
-            $input_biz_info .= "($user_id, '$business_name[$i]','$business_addr[$i]');";
+            $input_biz_info=
+                "insert into `cms_business_info` (`cm_id`, `business_name`, `address`) values";
+
+            if($i !== ($size-1)){
+                $input_biz_info .= "($user_id, '$business_name[$i]','$business_addr[$i]'),";
+            }else{
+                $input_biz_info .= "($user_id, '$business_name[$i]','$business_addr[$i]');";
+            }
+
+            $insertId = $db->insert($input_biz_info, null);
+
+            if(!$insertId){
+                throw new Exception('Failed to insert license info.');
+            }
         }
     }
 
-    $insertId = $db->insert($input_biz_info, null);
-
-    if(!$insertId){
-        throw new Exception('Failed to insert business address info.');
-    }
 
     $db->getDBINS()->commit();
     $db=null;
 
-    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '기업 회원 가입이 완료되었습니다.');
+    AlertMsgAndRedirectTo(ROOT . 'mypage.php', '기업 회원 정보가 수정되었습니다.');
 
 }catch(Exception $e){
     $db->getDBINS()->rollBack();

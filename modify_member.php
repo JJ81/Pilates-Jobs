@@ -4,11 +4,12 @@ require_once('./commons/config.php');
 require_once('./commons/utils.php');
 require_once('./commons/session.php');
 
-// 일단 로그인이 되어 있어야 하며
+// 일단 로그인이 되어 있어야
 if(empty($_SESSION['user'])){
     AlertMsgAndRedirectTo(ROOT. 'index.php', '로그인을 해야 합니다.');
     exit;
 }
+
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
@@ -218,6 +219,7 @@ $db=null;
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script>
     (function ($) {
         var btnSubmit = $('.js-btn-register');

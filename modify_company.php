@@ -4,12 +4,25 @@ require_once('./commons/config.php');
 require_once('./commons/utils.php');
 require_once('./commons/session.php');
 
-// ROLE이 U일 경우에만 진입할 수 있도록 한다.
-if($_SESSION['role'] !== 'U'){
-    AlertMsgAndRedirectTo('/', '이미 가입된 회원입니다');
+if(empty($_SESSION['user'])){
+    AlertMsgAndRedirectTo(ROOT. 'index.php', '로그인을 해야 합니다.');
     exit;
 }
 
+use Msg\Database\DBConnection as DBconn;
+$db = new DBconn();
+
+$email = $_SESSION['user'];
+
+$query="select * from `cms_member` where `email`='$email';";
+$row=$db->query($query);
+
+$user_id=$row[0]['id'];
+
+$query_address="select * from `cms_business_info` where `cm_id`=$user_id;";
+$address=$db->query($query_address);
+
+$db=null;
 ?>
 
 <!doctype html>
@@ -53,7 +66,7 @@ if($_SESSION['role'] !== 'U'){
                         <div class="entry-box">
                             <div>* 의도적으로 잘못된 정보 입력하실 경우, 원치 않은 불이익을 당할 수도 있습니다.</div>
                             <!-- 개인 가입 입력창 -->
-                            <form action="./response/res_reg_company.php" method="post" enctype="multipart/form-data" class="form-register-company">
+                            <form action="./response/res_update_company.php" method="post" enctype="multipart/form-data" class="form-register-company">
                                 <table class="table table-private-info">
                                     <colgroup>
                                         <col width="30%" />
@@ -70,6 +83,7 @@ if($_SESSION['role'] !== 'U'){
                                                    placeholder="상호명 입력해주세요."
                                                    autocomplete="off"
                                                    autofocus
+                                                   value="<?php echo $row[0]['business_name']; ?>"
                                                    required />
                                         </td>
                                     </tr>
@@ -78,7 +92,12 @@ if($_SESSION['role'] !== 'U'){
                                             전화번호
                                         </th>
                                         <td>
-                                            <input type="tel" name="phone" class="field-phone" placeholder="전화 번호를 입력하세요." required />
+                                            <input type="tel"
+                                                   name="phone"
+                                                   class="field-phone"
+                                                   placeholder="전화 번호를 입력하세요."
+                                                   value="<?php echo $row[0]['phone']; ?>"
+                                                   required />
                                         </td>
                                     </tr>
                                     <tr>
@@ -90,19 +109,26 @@ if($_SESSION['role'] !== 'U'){
                                     <tr>
                                         <th>사업자번호</th>
                                         <td>
-                                            <input type="text" name="business_number" class="field-business-number" placeholder="사업자번호를 입력해주세요." />
+                                            <input type="text"
+                                                   name="business_number"
+                                                   class="field-business-number"
+                                                   value="<?php echo $row[0]['business_number']; ?>"
+                                                   placeholder="사업자번호를 입력해주세요." />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>회사소개</th>
                                         <td>
-                                            <textarea name="description" class="field-description" id="" cols="30" rows="10" required></textarea>
+                                            <textarea name="description" class="field-description" id="" cols="30" rows="10" required><?php echo $row[0]['description']; ?></textarea>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>홈페이지 주소</th>
                                         <td>
-                                            <input type="text" name="homepage" placeholder="홈페이지 주소(선택사항)" />
+                                            <input type="text"
+                                                   name="homepage"
+                                                   value="<?php echo $row[0]['homepage']; ?>"
+                                                   placeholder="홈페이지 주소(선택사항)" />
                                         </td>
                                     </tr>
                                 </table>
@@ -115,27 +141,38 @@ if($_SESSION['role'] !== 'U'){
                                     <tr>
                                         <td colspan="3" class="center section-title">사업장 정보</td>
                                     </tr>
+                                    <?php for($i=0,$size=count($address);$i<$size;$i++){ ?>
                                     <tr>
                                         <td>
-                                            <input type="text" name="business_name[]" placeholder="사업장명, 지정명" class="field-branch-name" />
+                                            <input type="text"
+                                                   name="business_name[]"
+                                                   placeholder="사업장명, 지정명"
+                                                   value="<?php echo $address[$i]['business_name']; ?>"
+                                                   class="field-branch-name" />
                                         </td>
                                         <td>
-                                            <input type="text" name="address[]" placeholder="주소를 입력해주세요." class="field-branch-addr" />
+                                            <input type="text"
+                                                   name="address[]"
+                                                   placeholder="주소를 입력해주세요."
+                                                   value="<?php echo $address[$i]['address']; ?>"
+                                                   class="field-branch-addr" />
+                                            <input type="hidden" name="address_id[]" value="<?php echo $address[$i]['id']; ?>">
                                         </td>
                                         <td class="center">
                                             <a href="#" class="delete-btn-license" onclick="deleteAddressInfo(this);">삭제</a>
                                         </td>
                                     </tr>
+                                    <?php } ?>
                                 </table>
 
                                 <div style="margin-top: 10px;text-align: right;">
                                     <a href="#" class="btn btn-sm js-btn-add-addr">사업장 추가</a>
                                 </div>
 
-                                <div style="margin-top: 20px;">
-                                    <input type="checkbox" id="agree_info" />
-                                    <label for="agree_info">상기 회원 정보는 구인공고를 위한 정보제공에 동의하십니까?</label>
-                                </div>
+<!--                                <div style="margin-top: 20px;">-->
+<!--                                    <input type="checkbox" id="agree_info" />-->
+<!--                                    <label for="agree_info">상기 회원 정보는 구인공고를 위한 정보제공에 동의하십니까?</label>-->
+<!--                                </div>-->
 
                                 <div class="center" style="padding: 10px 0;">
                                     <button type="submit" class="btn btn-big btn-style-5 js-btn-register-com">등록하기</button>
@@ -157,6 +194,7 @@ if($_SESSION['role'] !== 'U'){
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script>
     (function ($) {
         var formCompany = $('.form-register-company');
@@ -235,11 +273,11 @@ if($_SESSION['role'] !== 'U'){
                 return;
             }
 
-            if(!check_agree.prop('checked')){
-                check_agree.focus();
-                alert('정보제공에 동의해주세요.');
-                return;
-            }
+            // if(!check_agree.prop('checked')){
+            //     check_agree.focus();
+            //     alert('정보제공에 동의해주세요.');
+            //     return;
+            // }
 
             formCompany.submit();
         });
@@ -250,6 +288,11 @@ if($_SESSION['role'] !== 'U'){
 
     function deleteAddressInfo(el){
         window.event.preventDefault();
+        // TODO ajax통신을 통해서 사업장 정보를 삭제할 수 있도록 한다.
+        
+
+
+
         $(el).parent().parent().remove();
     }
 

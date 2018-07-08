@@ -312,7 +312,7 @@ if($_SESSION['role'] !== 'U'){
         var nameComplete=false;
 
         if($('.license_dt').length === 0){
-            console.log('check license dt 2');
+            //console.log('check license dt 2');
             dtComplete=false;
             nameComplete=false;
             return true;
@@ -321,7 +321,7 @@ if($_SESSION['role'] !== 'U'){
         $('.license_dt').each(function (i, el){
             console.log( $(this).val() );
             if($(this).val().trim() === ''){
-                console.log('check license dt 2');
+                //console.log('check license dt 2');
                 dtComplete=false;
                 return false;
             }
@@ -330,17 +330,17 @@ if($_SESSION['role'] !== 'U'){
 
         $('.field-license-name').each(function (i, el){
             if($(this).val().trim() === ''){
-                console.log('check license dt 4');
+                //console.log('check license dt 4');
                 nameComplete=false;
                 return false;
             }
 
-            console.log('check license dt 5');
+            //console.log('check license dt 5');
             nameComplete=true;
         });
 
 
-        console.log('check license dt 6');
+        //console.log('check license dt 6');
 
 
         return (dtComplete && nameComplete);
