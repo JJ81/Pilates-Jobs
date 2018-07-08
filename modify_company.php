@@ -159,7 +159,7 @@ $db=null;
                                             <input type="hidden" name="address_id[]" value="<?php echo $address[$i]['id']; ?>">
                                         </td>
                                         <td class="center">
-                                            <a href="#" class="delete-btn-license" onclick="deleteAddressInfo(this);">삭제</a>
+                                            <a href="#" class="delete-btn-license" onclick="deleteAddressInfo(this,<?php echo $address[$i]['id']; ?>);">삭제</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -281,19 +281,24 @@ $db=null;
 
             formCompany.submit();
         });
-
-
-
     } (jQuery));
 
-    function deleteAddressInfo(el){
+    function deleteAddressInfo(el, address_id){
         window.event.preventDefault();
-        // TODO ajax통신을 통해서 사업장 정보를 삭제할 수 있도록 한다.
-        
 
-
-
-        $(el).parent().parent().remove();
+        axios.get('<?php echo ROOT; ?>response/res_delete_address.php?id='+address_id)
+            .then(function (res) { // success
+                if(res.data.success){
+                    $(el).parent().parent().remove();
+                    alert('삭제되었습니다.');
+                }else{
+                    alert('일시적으로 오류가 났습니다. 다시 시도해주세요.');
+                }
+            })
+            .catch(function(err) { // err
+                vm.status = 'Failed to delete data by API';
+                console.error(err);
+            });
     }
 
     function checkAddressInfo(){

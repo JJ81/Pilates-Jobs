@@ -185,7 +185,7 @@ $db=null;
                                             <input type="text" placeholder="자격증 명칭" name="license_name[]" class="field-license-name" value="<?php echo $license[$i]['license_name'];?>" />
                                         </td>
                                         <td class="center">
-                                            <a href="#" class="delete-btn-license" onclick="deleteLicense(this);">삭제</a>
+                                            <a href="#" class="delete-btn-license" onclick="deleteLicense(this, <?php echo $license[$i]['id']; ?>);">삭제</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -367,10 +367,23 @@ $db=null;
         return (dtComplete && nameComplete);
     }
 
-    function deleteLicense(el){
+    function deleteLicense(el, license_id){
         window.event.preventDefault();
-        $(el).parent().parent().remove();
-        console.log('삭제');
+
+        axios.get('<?php echo ROOT; ?>response/res_delete_license.php?id='+license_id)
+            .then(function (res) { // success
+                if(res.data.success){
+                    $(el).parent().parent().remove();
+                    alert('삭제되었습니다.');
+                }else{
+                    alert('일시적으로 오류가 났습니다. 다시 시도해주세요.');
+                }
+            })
+            .catch(function(err) { // err
+                vm.status = 'Failed to delete data by API';
+                console.error(err);
+            });
+
     }
 
     $('.dateController').bind('change', function () {
