@@ -132,7 +132,7 @@ $db=null;
                                                 <tr>
                                                     <th>비밀번호</th>
                                                     <td>
-                                                        <a href="#" class="btn btn-link">비밀번호 수정</a>
+                                                        <a href="#" class="btn btn-link btn-style-3">비밀번호 수정</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
