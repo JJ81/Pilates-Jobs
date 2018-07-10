@@ -8213,3 +8213,32 @@ button.account:before{
   top: 4px;
   right: 10px;
 }
+
+.job-info-area{
+    margin-bottom: 30px;
+}
+
+
+.job-info-box{
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.job-info-box h3{
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.job-info-box .split{
+    font-size: 12px;
+    color: #999;
+    position: relative;
+    top: -2px;
+    margin: 0 5px;
+}
+
+.section-title{
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}

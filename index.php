@@ -33,10 +33,16 @@ $blog_list_query=
 $blog=$db->query($blog_list_query);
 
 
-
-
-
-
+// 5. 구인정보 모두 가져오기
+$job_query=
+    "select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`, " .
+    "`cm`.`business_name`, `cm`.`homepage` " .
+    "from `cms_job_info` as `cji` " .
+    "left join `cms_business_info` as `cbi` " .
+    "on `cbi`.`id` = `cji`.`branch` " .
+    "left join `cms_member` as `cm` " .
+    "on `cm`.`id` = `cbi`.`cm_id`;";
+$job=$db->query($job_query);
 
 
 $db=null;
@@ -54,16 +60,6 @@ $db=null;
 
 <div class="loader"></div>
 
-<!--cookie-->
-<!-- <div class="cookie">
-        <div class="container">
-          <div class="clearfix">
-            <span>Please note this website requires cookies in order to function correctly, they do not store any specific information about you personally.</span>
-            <div class="f-right"><a href="#" class="button button-type-3 button-orange">Accept Cookies</a><a href="#" class="button button-type-3 button-grey-light">Read More</a></div>
-          </div>
-        </div>
-      </div>-->
-
 <!-- - - - - - - - - - - - - - Wrapper - - - - - - - - - - - - - - - - -->
 <div id="wrapper" class="wrapper-container">
     <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
@@ -71,25 +67,37 @@ $db=null;
 
     <?php require_once ('./inc/header.php');?>
 
-    <!-- - - - - - - - - - - - - - Breadcrumbs - - - - - - - - - - - - - - - - -->
-<!--    <div class="breadcrumbs-wrap">-->
-<!--        <div class="container">-->
-<!--            <h1 class="page-title">Classic Blog</h1>-->
-<!--            <ul class="breadcrumbs">-->
-<!--                <li><a href="index.html">Home</a></li>-->
-<!--                <li>Blog</li>-->
-<!--                <li>Classic</li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!-- - - - - - - - - - - - - end Breadcrumbs - - - - - - - - - - - - - - - -->
-
     <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
     <div id="content" class="page-content-wrap">
         <div class="container">
             <div class="row">
                 <main id="main" class="col-lg-8 col-md-12">
 
+                    <div class="job-info-area">
+                        <h2 class="section-title">구인 정보</h2>
+                        <div>
+                            <!-- loop -->
+                            <?php for($i=0,$size=count($job);$i<$size;$i++){ ?>
+                            <div class="job-info-box">
+                                <h3><?php echo $job[$i]['business_name']; ?></h3>
+                                <p>
+                                    지역: <?php echo $job[$i]['branch_address']; ?>
+                                    <span class="split">|</span>
+                                    급여: <?php echo $job[$i]['salary']; ?>
+                                    <span class="split">|</span>
+                                    근무시간: 지역: <?php echo $job[$i]['job_time']; ?>
+                                    <span class="split">|</span>
+                                    근무형태: 지역: <?php echo $job[$i]['job_type']; ?>
+                                    <span class="split">|</span>
+                                    직책: 지역: <?php echo $job[$i]['position']; ?>
+                                    <br />
+                                    연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>"><?php echo $job[$i]['phone']; ?></a>
+                                </p>
+                            </div>
+                            <?php } ?>
+                            <!-- // loop -->
+                        </div>
+                   </div>
                     <div class="content-element5">
 
                         <div class="entry-box">
