@@ -36,7 +36,16 @@ if($_SESSION['reg_type'] == 'P'){
 }else if($_SESSION['reg_type'] == 'B'){
     $query_address="select * from `cms_business_info` where `cm_id`=$user_id;";
     $address=$db->query($query_address);
+
+    $query_job_info=
+        "select `cji`.* , `cbi`.`business_name`, `cbi`.`address` " .
+        "from `cms_job_info` as `cji` " .
+        "left join `cms_business_info` as `cbi` " .
+        "on `cbi`.`id` = `cji`.`branch` " .
+        "where `cji`.`user_id`=$user_id;";
+    $job_info=$db->query($query_job_info);
 }
+
 
 $db=null;
 ?>
@@ -152,7 +161,7 @@ $db=null;
 
                                             <!-- 사업장 정보 -->
                                             <?php if(count($address) > 0){ ?>
-                                                <table class="table tb-license table-client-info" style="margin-top: 20px;">
+                                                <table class="table tb-license table-client-info" style="border-top: none;">
                                                     <colgroup>
                                                         <col width="30%" />
                                                         <col width="70%" />
@@ -171,7 +180,66 @@ $db=null;
                                                 </table>
                                             <?php }?>
 
-                                            <!-- TODO 구인공고를 낸 정보 출력/입력/수정/삭제  -->
+                                            <!-- 구인공고를 낸 정보 출력/입력/수정/삭제  -->
+                                            <div style="text-align: right;padding: 10px 0;">
+                                                <a href="./register_job_info.php" class="btn btn-sm btn-style3">구인정보추가</a>
+                                            </div>
+
+                                            <?php if(count($job_info) == 0) {?>
+                                                <div class="center">
+                                                    아직 등록된 구인 정보가 없습니다.
+                                                </div>
+                                            <?php } ?>
+
+                                            <?php for($i=0,$size=count($job_info);$i<$size;$i++){ ?>
+                                            <table class="table tb-license table-client-info">
+                                                <colgroup>
+                                                    <col width="30%" />
+                                                    <col width="70%" />
+                                                </colgroup>
+                                                <tr>
+                                                    <td colspan="2" class="center section-title">
+                                                        구인 정보
+                                                        <span class="pos-right">
+                                                            <a href="./modify_job_info.php?job_info_id=<?php echo $job_info[$i]['id']; ?>" class="btn-modify-job-info">수정</a>&nbsp;&nbsp;
+                                                            <a href="./response/res_delete_job_info.php?job_info_id=<?php echo $job_info[$i]['id']; ?>" class="btn-delete-job-info">삭제</a>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>사업장</th>
+                                                    <td><?php echo $job_info[$i]['business_name']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>주소</th>
+                                                    <td><?php echo $job_info[$i]['address']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>연락처</th>
+                                                    <td><?php echo $job_info[$i]['phone']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>급여</th>
+                                                    <td><?php echo $job_info[$i]['salary']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>근무시간</th>
+                                                    <td>
+                                                        <?php echo $job_info[$i]['job_time']; ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>근무형태</th>
+                                                    <td><?php echo $job_info[$i]['job_type']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>직책</th>
+                                                    <td><?php echo $job_info[$i]['position']; ?></td>
+                                                </tr>
+                                            </table>
+                                            <?php } ?>
+
+
                                             <!-- TODO 지원자 리스트 출력 / 열람 -->
 
                                         <?php }else if($row[$i]['reg_type'] == "P"){ ?>

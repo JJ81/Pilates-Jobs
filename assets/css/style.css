@@ -8192,3 +8192,24 @@ button.account:before{
     height: 45px;
     opacity: 0;
 }
+
+.btn-modify-job-info,
+.btn-delete-job-info{
+  font-size: 12px;
+}
+
+.btn-modify-job-info:hover,
+.btn-delete-job-info:hover{
+  color: #45b29d;
+}
+
+.table th,
+.table td{
+  position: relative;
+}
+
+.pos-right{
+  position: absolute;
+  top: 4px;
+  right: 10px;
+}
