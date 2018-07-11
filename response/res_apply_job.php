@@ -25,7 +25,7 @@ if($_SESSION['role'] == 'U'){
 }
 
 // 기업 회원은 지원할 수 없다고 떠야 한다.
-if($_SESSION['reg_type'] !== 'B'){
+if($_SESSION['reg_type'] == 'B'){
     echo json_encode(array(
         'success' => false,
         'msg' => '개인회원만 지원할 수 있습니다.'
@@ -43,6 +43,9 @@ if(empty($_POST['job_id'])){
     //AlertMsgAndRedirectTo(ROOT. 'mypage.php', '잘못된 접근입니다.');
     exit;
 }
+
+use Msg\Database\DBConnection as DBconn;
+$db = new DBconn();
 
 $job_id=getDataByPost('job_id');
 $user_id=$_SESSION['user_id'];

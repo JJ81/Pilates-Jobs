@@ -221,12 +221,32 @@ $db=null;
 
     btnApply.bind('click', function (e) {
         e.preventDefault();
-        console.log(axios);
 
-        // TODO POST호출 job-id를 전달하여 처리
-        // TODO 리턴받은 에러메시지를 출력할 것. msg
+        var formData = new FormData();
+        var config = {};
 
+        var data = $(this).attr('data-job-id');
 
+        if(!data){
+            alert('잘못된 접근입니다.');
+            return;
+        }
+
+        formData.append('job_id', data);
+
+        axios.post('<?php echo ROOT;?>response/res_apply_job.php', formData, config)
+            .then(function (res) {
+                // console.log(res);
+                if(res.data.success){
+                    alert(res.data.msg);
+                }else{
+                    alert(res.data.msg);
+                }
+            })
+            .catch(function (err) {
+                alert('지원처리가 실패되었습니다. 잠시 후에 다시 시도해주세요.');
+                console.error(err);
+            });
     });
 
 </script>
