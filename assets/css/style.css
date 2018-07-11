@@ -8243,3 +8243,20 @@ button.account:before{
     font-size: 20px;
     margin-bottom: 0 !important;
 }
+
+.btn-job-apply{
+    font-size: 13px;
+    background: #e883ae;
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: #fff;
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.notice-desc{
+    display: none;
+    padding: 10px 10px 10px 15px;
+}

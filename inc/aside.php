@@ -3,10 +3,18 @@
 
     <div class="widget">
         <h6 class="widget-title">공지사항</h6>
-        <ul>
+        <?php
+            // TODO 공지사항의 출력을 아코디언 형식으로 하단에 보여질 수 있도록 할 것.
+        ?>
+        <ul class="notice-wrp">
             <?php for($i=0,$size=count($notice);$i<$size;$i++){ ?>
-            <li>
-                <a href="#"><?php echo $notice[$i]['title']; ?></a>
+            <li class="notice-list">
+                <a href="#notice" class="notice-link">
+                    <?php echo $notice[$i]['title']; ?>
+                </a>
+                <div class="notice-desc">
+                    <?php echo $notice[$i]['contents']; ?>
+                </div>
             </li>
             <?php } ?>
         </ul>

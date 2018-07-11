@@ -70,12 +70,25 @@ $db=null;
             <div class="row">
                 <main id="main" class="col-lg-8 col-md-12">
                     <div class="job-info-area">
+                        <h2 class="section-title">이벤트</h2>
+                        <div>
+                            <div class="event-box">
+                                이벤트를 전달합니다.
+                            </div>
+                            <div class="event-desc">
+                                이벤트 내용 출력
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-info-area">
                         <h2 class="section-title">구인 정보</h2>
                         <div>
                             <!-- loop -->
                             <?php for($i=0,$size=count($job);$i<$size;$i++){ ?>
                             <div class="job-info-box">
-                                <h3><?php echo $job[$i]['business_name']; ?></h3>
+                                <h3 class="clearfix">
+                                    <?php echo $job[$i]['business_name']; ?>
+                                </h3>
                                 <p>
                                     지역: <?php echo $job[$i]['branch_address']; ?>
                                     <span class="split">|</span>
@@ -88,6 +101,7 @@ $db=null;
                                     직책: <?php echo $job[$i]['position']; ?>
                                     <br />
                                     연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>"><?php echo $job[$i]['phone']; ?></a>
+                                    <a href="#" class="btn-job-apply">지원하기</a>
                                 </p>
                             </div>
                             <?php } ?>
@@ -180,6 +194,23 @@ $db=null;
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
+<script>
+    var noticeLink = $('.notice-link');
+    noticeLink.bind('click', function (e) {
+        e.preventDefault();
+        var target=$(this).next();
+        if(target.hasClass('active')){
+            target.css('display', 'none');
+            target.removeClass('active');
+        }else{
+            target.css('display', 'block');
+            target.addClass('active');
+        }
+
+    });
+
+</script>
+
 
 </body>
 </html>
