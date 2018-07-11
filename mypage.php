@@ -33,6 +33,24 @@ $user_id=$row[0]['id'];
 if($_SESSION['reg_type'] == 'P'){
     $query_license="select * from `cms_license` where `user_id`=$user_id;";
     $license=$db->query($query_license);
+
+    // 개인이 지원한 이력을 조회한다.
+    $apply_query
+        ="select `cjh`.*, `cji`.`branch`, `cji`.`phone`, `cji`.`salary`, `cji`.`job_time`, `cji`.`job_type`, `cji`.`position`, " .
+        "`cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`, " .
+        "`cm`.`homepage`, `cm`.`business_name`, `cm`.`business_number`, `cm`.`description` " .
+        "from `cms_job_history` as `cjh` " .
+        "left join `cms_job_info` as `cji` " .
+        "on `cji`.`id` = `cjh`.`job_info` " .
+        "left join `cms_business_info` as `cbi` " .
+        "on `cbi`.`id` = `cji`.`branch` " .
+        "left join `cms_member` as `cm` " .
+        "on `cm`.`id` = `cbi`.`cm_id` " .
+        "where `cjh`.`user_id`=$user_id " .
+        "order by `cjh`.`id` desc;";
+    $history=$db->query($apply_query);
+
+
 }else if($_SESSION['reg_type'] == 'B'){
     $query_address="select * from `cms_business_info` where `cm_id`=$user_id;";
     $address=$db->query($query_address);
@@ -337,7 +355,7 @@ $db=null;
                                             <?php }?>
 
 
-                                           <!-- TODO 지원 이력 / 지원 취소 -->
+                                           <!-- 지원 이력 / 지원 취소 -->
                                             <table class="table tb-license table-client-info" style="margin-top: 20px;">
                                                 <colgroup>
                                                     <col width="30%" />
@@ -349,16 +367,49 @@ $db=null;
                                                         지원 이력
                                                     </td>
                                                 </tr>
-<!--                                                <tr>-->
-<!--                                                    <td colspan="3" class="center">아직 지원한 이력이 없습니다.</td>-->
-<!--                                                </tr>-->
+                                                <?php if(count($history) == 0){ ?>
                                                 <tr>
-                                                    <td class="center">2018-07-07</td>
-                                                    <td>OO필라테스</td>
+                                                    <td colspan="3" class="center">아직 지원한 이력이 없습니다.</td>
+                                                </tr>
+                                                <?php } ?>
+
+                                                <?php for($i=0,$size=count($history);$i<$size;$i++){ ?>
+                                                <tr>
+                                                    <td class="center"><?php echo $history[$i]['applied_dt']; ?></td>
+                                                    <td><?php echo $history[$i]['business_name']; ?></td>
                                                     <th>
-                                                        <a href="#" class="btn btn-style-5">지원취소</a>
+                                                        <a href="#" data-job-id="<?php echo $history[$i]['id']; ?>" class="btn-cancel-apply">지원취소</a>
                                                     </th>
                                                 </tr>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <div class="mypage-job-desc">
+                                                            지역 : <?php echo $history[$i]['branch_name']; ?>
+                                                            <span class="split">|</span>
+                                                            주소 : <?php echo $history[$i]['branch_address']; ?>
+                                                            <span class="split">|</span>
+                                                            급여 : <?php echo $history[$i]['salary']; ?>
+                                                            <span class="split">|</span>
+                                                            근무시간 : <?php echo $history[$i]['job_time']; ?>
+                                                            <span class="split">|</span>
+                                                            근무형태 : <?php echo $history[$i]['job_type']; ?>
+                                                            <span class="split">|</span>
+                                                            직책 : <?php echo $history[$i]['position']; ?>
+                                                        </div>
+                                                        <div>
+                                                            <span>회사 소개</span>
+                                                            <div style="white-space: pre-line;"><?php echo $history[$i]['description']; ?></div>
+                                                            <p>
+                                                                사업자등록번호 : <?php echo $history[$i]['business_number']; ?>
+                                                                <span class="split">|</span>
+                                                                연락처 : <?php echo $history[$i]['phone']; ?>
+                                                                <span class="split">|</span>
+                                                                홈페이지 : <?php echo $history[$i]['homepage']; ?>
+                                                            </p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
                                             </table>
                                         <?php } ?>
                                     <?php } ?>
@@ -382,6 +433,39 @@ $db=null;
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
+<script>
+    var btnCancel = $('.btn-cancel-apply');
+    btnCancel.bind('click', function (e) {
+        e.preventDefault();
 
+        var formData = new FormData();
+        var config = {};
+
+        var data = $(this).attr('data-job-id');
+
+        if(!data){
+            alert('잘못된 접근입니다.');
+            return;
+        }
+
+        formData.append('job_id', data);
+
+        axios.post('<?php echo ROOT;?>response/res_cancel_job.php', formData, config)
+            .then(function (res) {
+                // console.log(res);
+                if(res.data.success){
+                    alert(res.data.msg);
+                    window.location.reload();
+                }else{
+                    alert(res.data.msg);
+                }
+            })
+            .catch(function (err) {
+                alert('지원취소처리가 실패되었습니다. 잠시 후에 다시 시도해주세요.');
+                console.error(err);
+            });
+
+    });
+</script>
 </body>
 </html>
