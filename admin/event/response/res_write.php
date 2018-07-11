@@ -45,7 +45,7 @@ $db = new DBconn();
 $admin_id=$_SESSION['user_id'];
 
 
-$query = "insert into `cms_board_notice` (`contents`,`title`, `created_dt`) values (:contents, :title, :created_dt);";
+$query = "insert into `cms_board_event` (`contents`,`title`, `created_dt`) values (:contents, :title, :created_dt);";
 $value = array( ':contents'=> $html, ':title'=>$title, ':created_dt'=>$date);
 $insertId = $db->insert($query, $value);
 
@@ -55,7 +55,7 @@ $insertId = $db->insert($query, $value);
 $db=null;
 
 
-Redirect('/admin/notice/view.php?id='.$insertId);
+Redirect('/admin/event/view.php?id='.$insertId);
 
 
 ?>

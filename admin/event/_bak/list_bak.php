@@ -23,7 +23,7 @@ if($_SESSION['role'] !== 'A'){
 ?>
 
 
-<?php require_once ('../inc/head.php');?>
+<?php require_once('../inc/head.php');?>
 
 <body class="fix-header fix-sidebar">
 <!-- Preloader - style you can find in spinners.css -->
@@ -33,8 +33,8 @@ if($_SESSION['role'] !== 'A'){
 </div>
 <!-- Main wrapper  -->
 <div id="main-wrapper">
-    <?php require_once ('../inc/header.php');?>
-    <?php require_once ('../inc/leftmenu.php');?>
+    <?php require_once('../inc/header.php');?>
+    <?php require_once('../inc/leftmenu.php');?>
 
     <!-- Page wrapper  -->
     <div class="page-wrapper">
@@ -250,12 +250,12 @@ if($_SESSION['role'] !== 'A'){
         </div>
         <!-- End Container fluid  -->
 
-        <?php require_once ('../inc/footer.php'); ?>
+        <?php require_once('../inc/footer.php'); ?>
     </div>
     <!-- End Page wrapper  -->
 </div>
 <!-- End Wrapper -->
 
-<?php require_once ('../inc/foot.php'); ?>
+<?php require_once('../inc/foot.php'); ?>
 </body>
 </html>

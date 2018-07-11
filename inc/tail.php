@@ -13,7 +13,7 @@
 <script src="./assets/plugins/twitter/jquery.tweet.js"></script>
 <script src="./assets/plugins/jquery.queryloader2.min.js"></script>
 <script src="./assets/plugins/owl.carousel.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <!-- JS theme files
 ============================================ -->
 <script src="./assets/js/plugins.js"></script>

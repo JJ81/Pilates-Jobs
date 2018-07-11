@@ -41,13 +41,13 @@ $admin_id=$_SESSION['user_id'];
 
 // TODO update로 변환할 것.
 
-$query = "update `cms_board_notice` set `title`='$title', `created_dt`='$date', `contents`='$html' where `id`=$id;";
+$query = "update `cms_board_event` set `title`='$title', `created_dt`='$date', `contents`='$html' where `id`=$id;";
 $result = $db->update($query);
 
 $db=null;
 
 
-Redirect('/admin/notice/view.php?id='.$id);
+Redirect('/admin/event/view.php?id='.$id);
 
 
 ?>

@@ -19,7 +19,7 @@ if($_SESSION['role'] !== 'A'){
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
-$query='select * from `cms_board_notice` order by `id` desc limit 0, 1000;';
+$query='select * from `cms_board_event` order by `id` desc limit 0, 1000;';
 $rows = $db->query($query);
 $db=null;
 
@@ -48,11 +48,11 @@ $db=null;
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">공지사항</h3></div>
+                <h3 class="text-primary">이벤트</h3></div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Notice</li>
+                    <li class="breadcrumb-item active">Event</li>
                 </ol>
             </div>
         </div>
@@ -65,8 +65,8 @@ $db=null;
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title clearfix">
-                            <h4>공지사항</h4>
-                            <a href="<?php echo ROOT;?>admin/notice/write.php" class="btn btn-sm btn-info pull-right">글쓰기</a>
+                            <h4>이벤트</h4>
+                            <a href="<?php echo ROOT;?>admin/event/write.php" class="btn btn-sm btn-info pull-right">글쓰기</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -77,14 +77,13 @@ $db=null;
                                         <th>제목</th>
                                         <th>상태</th>
                                         <th>공지일</th>
-                                        <th>조회수</th>
                                         <th>액션</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php if(count($rows) == 0){ ?>
                                         <tr>
-                                            <td colspan="6">No Data.</td>
+                                            <td colspan="5" style="text-align: center;">No Data.</td>
                                         </tr>
                                     <?php }else{ ?>
                                         <?php foreach ($rows as $r) { ?>
@@ -104,10 +103,7 @@ $db=null;
                                                     <?php echo setDate($r['created_dt']);?>
                                                 </td>
                                                 <td>
-                                                    <?php echo separateCommaNumber($r['hits']);?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo ROOT;?>admin/notice/view.php?id=<?php echo $r['id'];?>" class="btn btn-sm btn-primary">보기</a>
+                                                    <a href="<?php echo ROOT;?>admin/event/view.php?id=<?php echo $r['id'];?>" class="btn btn-sm btn-primary">보기</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

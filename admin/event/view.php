@@ -7,7 +7,7 @@ require_once('../../commons/session.php');
 define('PAGE','NOTICE');
 
 if(empty($_GET['id'])){
-    AlertMsgAndRedirectTo(ROOT . 'admin/notice/list.php', '잘못된 접근입니다');
+    AlertMsgAndRedirectTo(ROOT . 'admin/event/list.php', '잘못된 접근입니다');
     exit;
 }
 
@@ -16,13 +16,13 @@ $id=getDataByGet('id');
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
-$query="select * from `cms_board_notice` where `id`=$id;";
+$query="select * from `cms_board_event` where `id`=$id;";
 $row= $db->query($query);
 
 $db=null;
 
 if(count($row) === 0){
-    AlertMsgAndRedirectTo(ROOT . 'admin/notice/list.php', '작성된 글이 없습니다.');
+    AlertMsgAndRedirectTo(ROOT . 'admin/event/list.php', '작성된 글이 없습니다.');
     exit;
 }
 
@@ -47,11 +47,11 @@ if(count($row) === 0){
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">공지사항</h3></div>
+                <h3 class="text-primary">이벤트</h3></div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Notice</li>
+                    <li class="breadcrumb-item active">Event</li>
                 </ol>
             </div>
         </div>

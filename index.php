@@ -29,7 +29,12 @@ $notice_list_query=
 $notice=$db->query($notice_list_query);
 
 // 3. 이벤트 최근 10개
-
+$event_list_query=
+    "select * from `cms_board_event` " .
+    "where `active` is true " .
+    "order by `id` desc " .
+    "limit 0, 10;";
+$event=$db->query($event_list_query);
 
 
 
@@ -71,14 +76,18 @@ $db=null;
                 <main id="main" class="col-lg-8 col-md-12">
                     <div class="job-info-area">
                         <h2 class="section-title">이벤트</h2>
-                        <div>
-                            <div class="event-box">
-                                이벤트를 전달합니다.
-                            </div>
-                            <div class="event-desc">
-                                이벤트 내용 출력
-                            </div>
-                        </div>
+                        <ul class="notice-wrp">
+                            <?php for($i=0,$size=count($event);$i<$size;$i++){ ?>
+                                <li class="notice-list">
+                                    <a href="#event" class="notice-link">
+                                        <?php echo $event[$i]['title']; ?>
+                                    </a>
+                                    <div class="notice-desc">
+                                        <?php echo $event[$i]['contents']; ?>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
                     </div>
                     <div class="job-info-area">
                         <h2 class="section-title">구인 정보</h2>
@@ -101,7 +110,7 @@ $db=null;
                                     직책: <?php echo $job[$i]['position']; ?>
                                     <br />
                                     연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>"><?php echo $job[$i]['phone']; ?></a>
-                                    <a href="#" class="btn-job-apply">지원하기</a>
+                                    <a href="#" class="btn-job-apply" data-job-id="<?php echo $job[$i]['id']; ?>">지원하기</a>
                                 </p>
                             </div>
                             <?php } ?>
@@ -196,6 +205,8 @@ $db=null;
 <?php require_once ('./inc/tail.php');?>
 <script>
     var noticeLink = $('.notice-link');
+    var btnApply = $('.btn-job-apply');
+
     noticeLink.bind('click', function (e) {
         e.preventDefault();
         var target=$(this).next();
@@ -206,6 +217,15 @@ $db=null;
             target.css('display', 'block');
             target.addClass('active');
         }
+    });
+
+    btnApply.bind('click', function (e) {
+        e.preventDefault();
+        console.log(axios);
+
+        // TODO POST호출 job-id를 전달하여 처리
+        // TODO 리턴받은 에러메시지를 출력할 것. msg
+
 
     });
 

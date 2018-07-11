@@ -23,10 +23,10 @@ use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
 $id=getDataByPost('id');
-$query = "update `cms_board_notice` set `active`=1 where `id`=$id;";
+$query = "update `cms_board_event` set `active`=1 where `id`=$id;";
 $result = $db->update($query);
 $db=null;
 
 
-AlertMsgAndRedirectTo('/admin/notice/view.php?id='.$id, '활성화되었습니다.');
+AlertMsgAndRedirectTo('/admin/event/view.php?id='.$id, '활성화되었습니다.');
 ?>

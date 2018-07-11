@@ -35,11 +35,11 @@ if($_SESSION['role'] !== 'A'){
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">공지사항 글쓰기</h3></div>
+                <h3 class="text-primary">이벤트 글쓰기</h3></div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Notice</li>
+                    <li class="breadcrumb-item active">Event</li>
                 </ol>
             </div>
         </div>
@@ -52,7 +52,7 @@ if($_SESSION['role'] !== 'A'){
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title clearfix">
-                            <h4>공지사항 글쓰기</h4>
+                            <h4>이벤트 글쓰기</h4>
                             <a href="javascript:window.history.back(-1);" class="btn btn-primary pull-right">뒤로</a>
                         </div>
                         <div class="card-body">
