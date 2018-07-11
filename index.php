@@ -8,8 +8,16 @@ require_once('./commons/session.php');
 use Msg\Database\DBConnection as DBconn;
 $db = new DBconn();
 
-// 1. 구인 정보 모두 출력
-// TODO 구인정보 출력 및 입력 양식이 필요함.
+// 1. 구인정보 모두 가져오기
+$job_query=
+    "select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`, " .
+    "`cm`.`business_name`, `cm`.`homepage` " .
+    "from `cms_job_info` as `cji` " .
+    "left join `cms_business_info` as `cbi` " .
+    "on `cbi`.`id` = `cji`.`branch` " .
+    "left join `cms_member` as `cm` " .
+    "on `cm`.`id` = `cbi`.`cm_id` order by `cji`.`id` desc;";
+$job=$db->query($job_query);
 
 
 // 2. 공지사항 최근 조회 10개
@@ -24,6 +32,7 @@ $notice=$db->query($notice_list_query);
 
 
 
+
 // 4. 블로그글 최근 10개
 $blog_list_query=
     "select * from `cms_board_blog` " .
@@ -31,18 +40,6 @@ $blog_list_query=
     "order by `id` desc " .
     "limit 0, 10;";
 $blog=$db->query($blog_list_query);
-
-
-// 5. 구인정보 모두 가져오기
-$job_query=
-    "select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`, " .
-    "`cm`.`business_name`, `cm`.`homepage` " .
-    "from `cms_job_info` as `cji` " .
-    "left join `cms_business_info` as `cbi` " .
-    "on `cbi`.`id` = `cji`.`branch` " .
-    "left join `cms_member` as `cm` " .
-    "on `cm`.`id` = `cbi`.`cm_id`;";
-$job=$db->query($job_query);
 
 
 $db=null;
@@ -72,7 +69,6 @@ $db=null;
         <div class="container">
             <div class="row">
                 <main id="main" class="col-lg-8 col-md-12">
-
                     <div class="job-info-area">
                         <h2 class="section-title">구인 정보</h2>
                         <div>
@@ -85,11 +81,11 @@ $db=null;
                                     <span class="split">|</span>
                                     급여: <?php echo $job[$i]['salary']; ?>
                                     <span class="split">|</span>
-                                    근무시간: 지역: <?php echo $job[$i]['job_time']; ?>
+                                    근무시간: <?php echo $job[$i]['job_time']; ?>
                                     <span class="split">|</span>
-                                    근무형태: 지역: <?php echo $job[$i]['job_type']; ?>
+                                    근무형태: <?php echo $job[$i]['job_type']; ?>
                                     <span class="split">|</span>
-                                    직책: 지역: <?php echo $job[$i]['position']; ?>
+                                    직책: <?php echo $job[$i]['position']; ?>
                                     <br />
                                     연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>"><?php echo $job[$i]['phone']; ?></a>
                                 </p>
@@ -101,7 +97,6 @@ $db=null;
                     <div class="content-element5">
 
                         <div class="entry-box">
-
                             <?php for($i=0,$size=count($blog);$i<$size;$i++){ ?>
                                 <?php if($blog[$i]['blog_type'] == 'T'){ ?>
                                     <!-- Entry ( Simple type) -->
