@@ -28,7 +28,7 @@
                 <!-- logo -->
                 <div class="logo-wrap">
                     <a href="/" class="logo">
-                        <img src="./assets/images/main/img_logo_pilahaus.jpg" alt="필라하우스" />
+                        <img src="./assets/images/main/img_logo_pila.jpg" alt="필라하우스" width="120" />
                     </a>
                 </div>
                 <!-- - - - - - - - - - - - / Mobile Menu - - - - - - - - - - - - - -->

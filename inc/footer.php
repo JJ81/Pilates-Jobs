@@ -1,7 +1,9 @@
 <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
 <footer id="footer" class="footer" data-bg="./assets/images/1920x390_bg1.jpg">
-    <div class="logo"><img src="../assets/images/main/img_logo_pilahaus.jpg" alt="필라하우스"></div>
+    <div class="logo">
+        <img src="./assets/images/main/img_logo_pila.jpg" alt="필라하우스" width="120" />
+    </div>
     <div class="container wide-style">
         <!-- main footer -->
         <div class="main-footer">
