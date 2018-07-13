@@ -109,7 +109,13 @@ $db=null;
                                     <span class="split">|</span>
                                     직책: <?php echo $job[$i]['position']; ?>
                                     <br />
-                                    연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>"><?php echo $job[$i]['phone']; ?></a>
+                                    연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>">
+                                        <?php if(empty($_SESSION['role']) or $_SESSION['role'] == 'U'){?>
+                                            ***-****-****
+                                        <?php } else { ?>
+                                            <?php echo $job[$i]['phone']; ?>
+                                        <?php } ?>
+                                    </a>
                                     <a href="#" class="btn-job-apply" data-job-id="<?php echo $job[$i]['id']; ?>">지원하기</a>
                                 </p>
                             </div>

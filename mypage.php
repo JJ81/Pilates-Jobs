@@ -55,12 +55,22 @@ if($_SESSION['reg_type'] == 'P'){
     $query_address="select * from `cms_business_info` where `cm_id`=$user_id;";
     $address=$db->query($query_address);
 
+//    $query_job_info=
+//        "select `cji`.* , `cbi`.`business_name`, `cbi`.`address` " .
+//        "from `cms_job_info` as `cji` " .
+//        "left join `cms_business_info` as `cbi` " .
+//        "on `cbi`.`id` = `cji`.`branch` " .
+//        "where `cji`.`user_id`=$user_id;";
     $query_job_info=
-        "select `cji`.* , `cbi`.`business_name`, `cbi`.`address` " .
+        "select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, " .
+        "group_concat(`cjh`.`user_id`) as `apply_user_id` " .
         "from `cms_job_info` as `cji` " .
         "left join `cms_business_info` as `cbi` " .
         "on `cbi`.`id` = `cji`.`branch` " .
-        "where `cji`.`user_id`=$user_id;";
+        "left join `cms_job_history` as `cjh` " .
+        "on `cjh`.`job_info` = `cji`.`id` " .
+        "where `cji`.`user_id`=$user_id " .
+        "group by `cji`.`id`;";
     $job_info=$db->query($query_job_info);
 }
 
@@ -159,7 +169,7 @@ $db=null;
                                                 <tr>
                                                     <th>비밀번호</th>
                                                     <td>
-                                                        <a href="#" class="btn btn-link btn-style-3">비밀번호 수정</a>
+                                                        <a href="#" class="btn btn-link btn-style-3 js-btn-modify-pw" data-subject="B">비밀번호 수정</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -210,6 +220,7 @@ $db=null;
                                             <?php } ?>
 
                                             <?php for($i=0,$size=count($job_info);$i<$size;$i++){ ?>
+                                            <!-- 구인정보 LOOP -->
                                             <table class="table tb-license table-client-info">
                                                 <colgroup>
                                                     <col width="30%" />
@@ -255,10 +266,17 @@ $db=null;
                                                     <td><?php echo $job_info[$i]['position']; ?></td>
                                                 </tr>
                                             </table>
+                                            <div style="text-align: right; padding: 5px 0 15px 0;">
+                                                <form action="./applied_users_info.php" method="post">
+                                                    <input type="hidden" name="applied_users" value="<?php echo $job_info[$i]['apply_user_id']; ?>" required />
+                                                    <input type="hidden" name="company_id" value="<?php echo $job_info[$i]['user_id']; ?>" required />
+                                                    <button type="submit" class="btn">지원자 정보 열람하기</button>
+                                                </form>
+                                            </div>
+                                            <!-- // 구인정보 LOOP -->
                                             <?php } ?>
 
-
-                                            <!-- TODO 지원자 리스트 출력 / 열람 -->
+                                            <!-- 지원자 리스트 출력 / 열람 -->
 
                                         <?php }else if($row[$i]['reg_type'] == "P"){ ?>
                                             <div style="text-align: right;margin-bottom: 10px;">
@@ -293,7 +311,7 @@ $db=null;
                                                 <tr>
                                                     <th>비밀번호</th>
                                                     <td>
-                                                        <a href="#" class="btn btn-link btn-style-3">비밀번호 변경</a>
+                                                        <a href="#" class="btn btn-link btn-style-3 js-btn-modify-pw" data-subject="P">비밀번호 변경</a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -429,12 +447,23 @@ $db=null;
     <?php require_once ('./inc/footer.php');?>
     <?php require_once ('./popup/sign.php');?>
     <?php require_once ('./popup/login.php');?>
+    <?php require_once ('./popup/reset_pw.php');?>
 </div>
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 <?php require_once ('./inc/tail.php');?>
 <script>
     var btnCancel = $('.btn-cancel-apply');
+    var popResetPw = $('#popup-reset-pw');
+    var btnCallPwModal = $('.js-btn-modify-pw');
+
+
+    btnCallPwModal.bind('click', function (e) {
+        e.preventDefault();
+        popResetPw.fadeIn('slow');
+    });
+
+
     btnCancel.bind('click', function (e) {
         e.preventDefault();
 
