@@ -8260,3 +8260,23 @@ button.account:before{
     display: none;
     padding: 10px 10px 10px 15px;
 }
+
+.link-more-company-info{
+    font-size: 13px;
+    background: #45b29d;
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: #fff;
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.hidden-info-company{
+    display: none;
+    border-top: 1px dotted #ddd;
+    margin-top: 5px;
+    padding: 5px;
+
+}

@@ -11,7 +11,7 @@ $db = new DBconn();
 // 1. 구인정보 모두 가져오기
 $job_query=
     "select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`, " .
-    "`cm`.`business_name`, `cm`.`homepage` " .
+    "`cm`.`business_name`, `cm`.`homepage`, `cm`.`business_number`, `cm`.`email`, `cm`.`description`  " .
     "from `cms_job_info` as `cji` " .
     "left join `cms_business_info` as `cbi` " .
     "on `cbi`.`id` = `cji`.`branch` " .
@@ -98,7 +98,7 @@ $db=null;
                                 <h3 class="clearfix">
                                     <?php echo $job[$i]['business_name']; ?>
                                 </h3>
-                                <p>
+                                <div>
                                     지역: <?php echo $job[$i]['branch_address']; ?>
                                     <span class="split">|</span>
                                     급여: <?php echo $job[$i]['salary']; ?>
@@ -108,16 +108,34 @@ $db=null;
                                     근무형태: <?php echo $job[$i]['job_type']; ?>
                                     <span class="split">|</span>
                                     직책: <?php echo $job[$i]['position']; ?>
-                                    <br />
-                                    연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>">
-                                        <?php if(empty($_SESSION['role']) or $_SESSION['role'] == 'U'){?>
-                                            ***-****-****
-                                        <?php } else { ?>
-                                            <?php echo $job[$i]['phone']; ?>
-                                        <?php } ?>
-                                    </a>
-                                    <a href="#" class="btn-job-apply" data-job-id="<?php echo $job[$i]['id']; ?>">지원하기</a>
-                                </p>
+
+                                    <div>
+                                        <a href="#none" class="link-more-company-info js-more-info">더보기</a>
+                                        <a href="#" class="btn-job-apply" data-job-id="<?php echo $job[$i]['id']; ?>">지원하기</a>
+                                    </div>
+
+                                    <div class="hidden-info-company">
+                                        <div><strong>상세 정보</strong></div>
+                                        <div>
+                                            상호 : <?php echo $job[$i]['business_name']; ?>
+                                            <span class="split">|</span>
+                                            사업자번호: <?php echo $job[$i]['business_number']; ?>
+                                            <span class="split">|</span>
+                                            이메일: <a href="mailto:<?php echo $job[$i]['email']; ?>"><?php echo $job[$i]['email']; ?></a>
+                                            <span class="split">|</span>
+                                            홈페이지: <a href="<?php echo $job[$i]['homepage']; ?>" target="_blank"><?php echo $job[$i]['homepage']; ?></a>
+                                            <span class="split">|</span>
+                                            연락처: <a href="tel:<?php echo $job[$i]['phone']; ?>">
+                                                <?php if(empty($_SESSION['role']) or $_SESSION['role'] == 'U'){?>
+                                                    ***-****-****
+                                                <?php } else { ?>
+                                                    <?php echo $job[$i]['phone']; ?>
+                                                <?php } ?>
+                                            </a>
+                                            <p style="white-space: pre-line;"><?php echo $job[$i]['description']; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <?php } ?>
                             <!-- // loop -->
@@ -212,6 +230,7 @@ $db=null;
 <script>
     var noticeLink = $('.notice-link');
     var btnApply = $('.btn-job-apply');
+    var btnMoreInfo = $('.js-more-info');
 
     noticeLink.bind('click', function (e) {
         e.preventDefault();
@@ -253,6 +272,20 @@ $db=null;
                 alert('지원처리가 실패되었습니다. 잠시 후에 다시 시도해주세요.');
                 console.error(err);
             });
+    });
+
+    btnMoreInfo.bind('click', function (e){
+        e.preventDefault();
+        console.log('more');
+        var target=$(this).parent().next();
+
+        if(target.hasClass('active')){
+            target.css('display', 'none');
+            target.removeClass('active');
+        }else{
+            target.css('display', 'block');
+            target.addClass('active');
+        }
     });
 
 </script>
