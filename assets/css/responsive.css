@@ -707,7 +707,8 @@
 	}
 
 	.popup form{
-		max-width: 60%;
+		/*max-width: 60%;*/
+		max-width: 100%;
 	}
 
 	.isotope.three-collumn > .item{

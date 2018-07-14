@@ -43,7 +43,7 @@
 <!--                                    <li><a href="/">Home</a></li>-->
 <!--                                    <li><a href="#">구직공고</a></li>-->
 <!--                                    <li><a href="#">구인공고</a></li>-->
-<!--                                    <li><a href="#">소식</a></li>-->
+
                                     <li><a href="/">메인</a></li>
                                     <li><a href="../mypage.php">내정보</a></li>
                                 </ul>

@@ -2,7 +2,7 @@
 
 
     <div class="widget">
-        <h6 class="widget-title">공지사항</h6>
+        <h6 class="widget-title bold">공지사항</h6>
         <?php
             // TODO 공지사항의 출력을 아코디언 형식으로 하단에 보여질 수 있도록 할 것.
         ?>

@@ -428,7 +428,7 @@ img.alignright{
 
 h1,h2,h3,h4,h5,h6{
   font-family: 'Prata', serif;
-  color: #333;
+  color: #444;
   font-weight: normal;
   letter-spacing: -0.1px;
 }
@@ -1954,13 +1954,13 @@ button.account:before{
     /*padding: 26px;*/
     /*background: #fff;*/
   /*}*/
+
 .popup .popup-inner{
   position: relative;
-  margin-top: 5%;
-
+  margin-top: 8%;
   width: 930px;
   display: inline-block;
-  padding: 26px;
+  padding: 25px 0;
   background: #fff;
 }
 
@@ -2104,8 +2104,9 @@ button.account:before{
     }
 
   .popup.var3 .popup-inner{
-    padding: 60px 40px;
-    width: 480px;
+
+      /*padding: 60px 40px;*/
+    max-width: 480px;
   }
 
 /* Brand box */
@@ -8220,6 +8221,9 @@ button.account:before{
     margin-bottom: 30px;
 }
 
+.bold{
+    font-weight: bold;
+}
 
 .job-info-box{
     padding: 10px;

@@ -75,7 +75,7 @@ $db=null;
             <div class="row">
                 <main id="main" class="col-lg-8 col-md-12">
                     <div class="job-info-area">
-                        <h2 class="section-title">이벤트</h2>
+                        <h2 class="section-title bold">이벤트</h2>
                         <ul class="notice-wrp">
                             <?php for($i=0,$size=count($event);$i<$size;$i++){ ?>
                                 <li class="notice-list">
@@ -94,7 +94,7 @@ $db=null;
                     <div style="border: 1px dotted #ddd;height: 1px;"></div>
 
                     <div class="job-info-area">
-                        <h2 class="section-title">구인 정보</h2>
+                        <h2 class="section-title bold">구인 정보</h2>
                         <div>
                             <!-- loop -->
                             <?php for($i=0,$size=count($job);$i<$size;$i++){ ?>
@@ -149,7 +149,7 @@ $db=null;
                     <div style="border: 1px dotted #ddd;height: 1px;"></div>
 
                     <div class="content-element5">
-                        <h2 class="section-title">필라하우스 소식</h2>
+                        <h2 class="section-title bold">필라하우스 소식</h2>
                        <div class="entry-box">
                             <?php for($i=0,$size=count($blog);$i<$size;$i++){ ?>
                                 <?php if($blog[$i]['blog_type'] == 'T'){ ?>
