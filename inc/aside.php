@@ -11,6 +11,7 @@
             <li class="notice-list">
                 <a href="#notice" class="notice-link">
                     <?php echo $notice[$i]['title']; ?>
+                    <i class="ico ico_arrow_right"></i>
                 </a>
                 <div class="notice-desc">
                     <?php echo $notice[$i]['contents']; ?>

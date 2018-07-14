@@ -81,6 +81,7 @@ $db=null;
                                 <li class="notice-list">
                                     <a href="#event" class="notice-link">
                                         <?php echo $event[$i]['title']; ?>
+                                        <i class="ico ico_arrow_right"></i>
                                     </a>
                                     <div class="notice-desc">
                                         <?php echo $event[$i]['contents']; ?>
@@ -89,6 +90,9 @@ $db=null;
                             <?php } ?>
                         </ul>
                     </div>
+
+                    <div style="border: 1px dotted #ddd;height: 1px;"></div>
+
                     <div class="job-info-area">
                         <h2 class="section-title">구인 정보</h2>
                         <div>
@@ -109,7 +113,7 @@ $db=null;
                                     <span class="split">|</span>
                                     직책: <?php echo $job[$i]['position']; ?>
 
-                                    <div>
+                                    <div class="job-info-bottom">
                                         <a href="#none" class="link-more-company-info js-more-info">더보기</a>
                                         <a href="#" class="btn-job-apply" data-job-id="<?php echo $job[$i]['id']; ?>">지원하기</a>
                                     </div>
@@ -140,15 +144,18 @@ $db=null;
                             <?php } ?>
                             <!-- // loop -->
                         </div>
-                   </div>
-                    <div class="content-element5">
+                    </div>
 
-                        <div class="entry-box">
+                    <div style="border: 1px dotted #ddd;height: 1px;"></div>
+
+                    <div class="content-element5">
+                        <h2 class="section-title">필라하우스 소식</h2>
+                       <div class="entry-box">
                             <?php for($i=0,$size=count($blog);$i<$size;$i++){ ?>
                                 <?php if($blog[$i]['blog_type'] == 'T'){ ?>
                                     <!-- Entry ( Simple type) -->
                                     <div class="entry">
-                                        <div class="label-top">Featured</div>
+<!--                                        <div class="label-top">Featured</div>-->
                                         <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                         <div class="thumbnail-attachment">
                                             <a href="#"><img src="<?php echo ROOT;?>upload/<?php echo $blog[$i]['thumbnail']; ?>" alt="" /></a>
@@ -167,10 +174,11 @@ $db=null;
                                             </div>
 <!--                                            <p>새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. 새로운 소식을 전달합니다. </p>-->
                                             <div class="flex-row justify-content-between">
-                                                <a href="#" class="btn btn-small btn-style-4">더보기</a>
-                                                <a href="#" class="entry-icon"><i class="licon-share"></i></a>
+                                                <a href="#" class="btn btn-small btn-style-4 js-more-blog-info">더보기</a>
+<!--                                                <a href="#" class="entry-icon"><i class="licon-share"></i></a>-->
                                             </div>
                                         </div>
+                                        <div class="blog-contents-info"><?php echo $blog[$i]['contents']; ?></div>
                                     </div>
                                 <?php } else if($blog[$i]['blog_type'] == 'V'){?>
                                     <!-- Entry video type -->
@@ -178,34 +186,29 @@ $db=null;
                                         <!-- - - - - - - - - - - - - - Entry attachment - - - - - - - - - - - - - - - - -->
                                         <div class="thumbnail-attachment">
                                             <div class="responsive-iframe">
-
                                                 <iframe src="https://www.youtube.com/embed/<?php echo $blog[$i]['video']; ?>?rel=0&amp;showinfo=0&amp;autohide=2&amp;controls=0&amp;playlist=J2Y_ld0KL-4&amp;enablejsapi=1"></iframe>
-
                                             </div>
                                             <div class="entry-label">Video</div>
                                         </div>
 
                                         <!-- - - - - - - - - - - - - - Entry body - - - - - - - - - - - - - - - - -->
                                         <div class="entry-body">
-
                                             <h5 class="entry-title">
                                                 <a href="#"><?php echo $blog[$i]['title']; ?></a>
                                             </h5>
                                             <div class="entry-meta">
-
                                                 <time class="entry-date" datetime="<?php echo $blog[$i]['created_dt']; ?>"><?php echo $blog[$i]['created_dt']; ?> posted</time>
                                                 <span>by</span>
                                                 <a href="#" class="entry-cat">관리자</a>
-
                                             </div>
 <!--                                            <p>홈트레이닝이 요즘 부쩍 늘어나면서 간단하게 영상을 보면서 시간을 쪼개어 운동에 시간을 투자하시는 분들이 늘어나고 있는 추세입니다...</p>-->
                                             <div class="flex-row justify-content-between">
-                                                <a href="#" class="btn btn-small btn-style-4">더보기</a>
-                                                <a href="#" class="entry-icon"><i class="licon-share"></i></a>
+                                                <a href="#" class="btn btn-small btn-style-4 js-more-blog-info">더보기</a>
+<!--                                                <a href="#" class="entry-icon"><i class="licon-share"></i></a>-->
                                             </div>
-
                                         </div>
 
+                                        <div class="blog-contents-info"><?php echo $blog[$i]['contents']; ?></div>
                                     </div>
                                 <?php } ?>
                             <?php } ?>
@@ -231,16 +234,21 @@ $db=null;
     var noticeLink = $('.notice-link');
     var btnApply = $('.btn-job-apply');
     var btnMoreInfo = $('.js-more-info');
+    var btnMoreBlog = $('.js-more-blog-info');
 
     noticeLink.bind('click', function (e) {
         e.preventDefault();
+
         var target=$(this).next();
+
         if(target.hasClass('active')){
             target.css('display', 'none');
             target.removeClass('active');
+            $(this).children('.ico').removeClass('ico_arrow_down').addClass('ico_arrow_right');
         }else{
             target.css('display', 'block');
             target.addClass('active');
+            $(this).children('.ico').addClass('ico_arrow_down').removeClass('ico_arrow_right');
         }
     });
 
@@ -279,6 +287,18 @@ $db=null;
         console.log('more');
         var target=$(this).parent().next();
 
+        if(target.hasClass('active')){
+            target.css('display', 'none');
+            target.removeClass('active');
+        }else{
+            target.css('display', 'block');
+            target.addClass('active');
+        }
+    });
+
+    btnMoreBlog.bind('click', function(e){
+        e.preventDefault();
+        var target=$(this).parent().parent().next();
         if(target.hasClass('active')){
             target.css('display', 'none');
             target.removeClass('active');

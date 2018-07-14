@@ -151,9 +151,10 @@ html,body{height: 100%;}
 ------------------------------------- */
 
 body{
-  font: 16px/26px 'Poppins', sans-serif;
-  color: #777;
-  position: relative;
+  /*font: 16px/26px 'Poppins', sans-serif;*/
+    font-family: "Poppins", sans-serif;
+    color: #777;
+    position: relative;
 }
 
 .loader{
@@ -8258,7 +8259,8 @@ button.account:before{
 
 .notice-desc{
     display: none;
-    padding: 10px 10px 10px 15px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
 }
 
 .link-more-company-info{
@@ -8278,5 +8280,56 @@ button.account:before{
     border-top: 1px dotted #ddd;
     margin-top: 5px;
     padding: 5px;
+}
 
+.blog-contents-info{
+    padding: 15px;
+    background: #fff;
+    white-space: pre-line;
+    margin-top: 20px;
+    display: none;
+}
+
+.notice-list{
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.notice-list:last-child{
+    border-bottom: 1px solid #ddd;
+}
+
+.notice-link{
+    display: block;
+    padding: 10px 50px 10px 10px;
+    position: relative;
+}
+
+.job-info-bottom{
+    margin-top: 10px;
+}
+
+
+.ico_arrow_right{
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: url('../images/main/ico_arrow_right.png') no-repeat center center;
+    background-size: contain;
+}
+
+.ico_arrow_down{
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: url('../images/main/ico_arrow_bottom.png') no-repeat center center;
+    background-size: contain;
 }
