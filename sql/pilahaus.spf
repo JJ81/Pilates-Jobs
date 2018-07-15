@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>php-test</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>1944342233130110085</string>
+			<key>name</key>
+			<string>php-skeleton</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>test</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8mb4</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDA0VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClJpZNIeHy0uXxAPTlNN
+			dXRhYmxlU3RyaW5noy0vI1hOU1N0cmluZ9IeHzEyXk5TTXV0YWJs
+			ZUFycmF5ozEzI1dOU0FycmF50h4fIjWiIiNfEA9OU0tleWVkQXJj
+			aGl2ZXLRODlUZGF0YYABAAgAEQAaACMALQAyADcARQBLAFIAWgBl
+			AGwAcAByAHQAdgB6AHwAfgCAAIIAhwCMAJEAugDBAMIAwwDFAMoA
+			1QDeAPQA+AEFAQ4BEwEVARcBGQEeASgBKgEtATIBRAFIAVEBVgFl
+			AWkBcQF2AXkBiwGOAZMAAAAAAAACAQAAAAAAAAA6AAAAAAAAAAAA
+			AAAAAAABlQ==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1086, 720}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from `cms_board_blog` 
+where `active` is true
+order by `id` desc
+limit 0, 10;
+
+select * from `cms_board_notice` 
+where `active` is true
+order by `id` desc
+limit 0, 10;
+
+
+CREATE TABLE `cms_board_event` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `contents` text CHARACTER SET utf8 NOT NULL,
+  `thumbnail` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `author` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `attached` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `hits` bigint(20) unsigned DEFAULT '0' COMMENT '조회수',
+  `created_dt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modified_dt` datetime DEFAULT NULL,
+  `active` tinyint(1) DEFAULT '1' COMMENT '해당 글 노출 여부를 결정한다.',
+  `type` enum('SE','GE') COLLATE utf8mb4_bin NOT NULL DEFAULT 'GE' COMMENT '비밀글인지 일반글인지 설정함',
+  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '타입이 비밀글일 경우 비밀번호를 입력받는다.',
+  `comment_id` int(11) DEFAULT NULL COMMENT '어느 글의 코멘트인지 설정',
+  `reply_id` int(11) DEFAULT NULL COMMENT '어느 글의 댓글인지 설정',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=COMPACT;
+
+
+alter table `cms_member` add column `gender` enum('M', 'F') default 'F' not null after `realname`;
+
+
+create table `cms_license`(
+	`id` bigint unsigned not null auto_increment,
+	`user_id` bigint unsigned not null comment 'cms_member의 아이디 참조',
+	`license_name` varchar(100) character set utf8 not null comment '자격증 명칭',
+	`taken_dt` datetime default null comment '취득한 날',
+	primary key(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=COMPACT;
+
+
+alter table `cms_member` add column `homepage` varchar(100) character set utf8 default null after `address`;
+
+
+create table `cms_job_info` (
+	`id` bigint unsigned not null auto_increment,
+	`branch` bigint unsigned not null comment '사업장 아이디 참조',
+	`phone` varchar(13) character set utf8 not null comment '연락처',
+	`sallery` varchar(20) character set utf8 not null comment '급여',
+	`job_time` varchar(20) character set utf8 not null comment '근무시간',
+	`job_type` varchar(10) character set utf8 not null comment '근무형태',
+	`position` varchar(10) character set utf8 not null comment '직책',
+	`user_id` bigint unsigned not null comment '어느 기업이 썼는지 기록',
+	primary key(`id`)
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=COMPACT;
+
+## branch, user_id는 참조 외래키로 연결할 것.
+
+select * from `cms_business_info` where `cm_id`=5;
+
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+where `cji`.`user_id`=5;
+
+
+## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+`cjh`.`user_id` as `apply_user_id`, `cjh`.`applied_dt` # 지원자 아이디만 group_concat으로 묶으면 어떻게 되는거지?
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5;
+
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5
+group by `cji`.`id`;
+
+
+
+select * 
+from `cms_job_info` as `cji`
+where `cji`.`id`=12 and `user_id`=5;
+
+
+select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`,
+`cm`.`business_name`, `cm`.`homepage`, `cm`.`business_number`, `cm`.`email` 
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_member` as `cm`
+on `cm`.`id` = `cbi`.`cm_id`;
+
+
+
+## 지원한 이력을 알려면
+## user_id, job_id(cms_job_info id와 연결), applied_dt, isCanceled
+create table `cms_job_history` (
+	`id` bigint unsigned not null auto_increment,
+	`job_info` bigint unsigned not null comment 'cms_job_id와 연결',
+	`user_id` bigint unsigned not null comment '지원한 아이디',
+	`applied_dt` datetime default current_timestamp comment '지원한 날',
+	`isCanceled` boolean default 0 comment '지원최소여부',
+	primary key(`id`)
+) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=COMPACT;
+
+
+
+select * from `cms_job_history`
+where `job_info`=1 and `user_id`=5;
+
+;
+## 개인이 지원한 이력과 그 내용을 볼 수 있도록 한다.
+select `cjh`.*, `cji`.`branch`, `cji`.`phone`, `cji`.`salary`, `cji`.`job_time`, `cji`.`job_type`, `cji`.`position`
+from `cms_job_history` as `cjh`
+left join `cms_job_info` as `cji`
+on `cji`.`id` = `cjh`.`job_info`
+where `cjh`.`user_id`=4
+order by `cjh`.`id` desc;
+
+
+select `cjh`.*, `cji`.`branch`, `cji`.`phone`, `cji`.`salary`, `cji`.`job_time`, `cji`.`job_type`, `cji`.`position`,
+`cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`,
+`cm`.`homepage`, `cm`.`business_name`, `cm`.`business_number`, `cm`.`description`
+from `cms_job_history` as `cjh`
+left join `cms_job_info` as `cji`
+on `cji`.`id` = `cjh`.`job_info`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_member` as `cm`
+on `cm`.`id` = `cbi`.`cm_id`
+where `cjh`.`user_id`=4
+order by `cjh`.`id` desc;
+
+
+select * from `cms_license` where `user_id` IN ('4','5') order by `id` asc;
+
+select * from `cms_member` where `id` IN ('4', '3');
+</string>
+			<key>table</key>
+			<string>cms_member</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>175</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`,
+`cm`.`business_name`, `cm`.`homepage`, `cm`.`business_number` 
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_member` as `cm`
+on `cm`.`id` = `cbi`.`cm_id`</string>
+		<string>select `cji`.*, `cbi`.`business_name` as `branch_name`, `cbi`.`address` as `branch_address`,
+`cm`.`business_name`, `cm`.`homepage` 
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_member` as `cm`
+on `cm`.`id` = `cbi`.`cm_id`</string>
+		<string>select * from `cms_member` where `id` IN ('4', '3')</string>
+		<string>select * from `cms_member` where `id` IN ('4', '5')</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+`cjh`.`user_id` as `apply_user_id`, `cjh`.`applied_dt` # 지원자 아이디만 group_concat으로 묶으면 어떻게 되는거지?
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>select * from `cms_license` where `user_id` IN ('4','5') order by `id` asc</string>
+		<string>select * from `cms_license` where `user_id` IN ('4','5') order by `id` desc</string>
+		<string>select * from `cms_license` where `user_id` IN ('4','5')</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5
+group by `cji`.`id`</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`, `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5
+group by `cji`.`id`</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`, `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5
+order by `cji`.`id` desc</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`, `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5
+order by `id` desc</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id`) as `apply_user_id`, `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+group_concat(`cjh`.`user_id` as `apply_user_id`), `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, 
+groupt_concat(`cjh`.`user_id` as `apply_user_id`), `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, `cjh`.`user_id` as `apply_user_id`, `cjh`.`applied_dt`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, `cjh`.*
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `cjh`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `chj`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+		<string>## 각 구인공고 지원한 지원자들 리스트를 붙여서 내려줄 것.
+select `cji`.* , `cbi`.`business_name`, `cbi`.`address`, `cjh`.*
+from `cms_job_info` as `cji`
+left join `cms_business_info` as `cbi`
+on `cbi`.`id` = `cji`.`branch`
+left join `cms_job_history` as `cjh`
+on `chj`.`job_info` = `cji`.`id`
+where `cji`.`user_id`=5</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.5-10.1.20-MariaDB</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
