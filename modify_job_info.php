@@ -41,7 +41,7 @@ $db=null;
 
 <?php require_once('./inc/head.php') ;?>
     
-<title>Pilahaus, 구인정보등록하기</title>
+<title>필라하우스 Pilahaus, 구인정보등록하기</title>
 </head>
 
 <body>

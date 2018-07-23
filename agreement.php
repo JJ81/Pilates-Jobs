@@ -4,7 +4,7 @@
 
 <?php require_once('./inc/head.php') ;?>
     
-<title>Pilahaus, 이용약관</title>
+<title>필라하우스 Pilahaus, 이용약관</title>
 </head>
 
 <body>

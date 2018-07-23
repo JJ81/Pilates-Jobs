@@ -36,7 +36,7 @@ $db=null;
 
     <?php require_once('./inc/head.php') ;?>
 
-    <title>Yoga</title>
+    <title>필라하우스 Pilahaus</title>
 </head>
 
 <body>

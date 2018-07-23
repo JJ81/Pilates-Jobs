@@ -7,13 +7,13 @@
             <ul id="sidebarnav">
                 <li class="nav-devider"></li>
                 <li class="nav-label">Home</li>
-<!--                <li>-->
-<!--                    <a class="has-arrow" href="#" aria-expanded="false">-->
-<!--                        <i class="far fa-user"></i>-->
-<!--                        <span class="hide-menu">회원관리-->
-<!--                        </span>-->
-<!--                    </a>-->
-<!--                </li>-->
+                <li>
+                    <a class="has-arrow" href="<?php echo ROOT;?>admin/member/list.php" aria-expanded="false">
+                        <i class="far fa-user"></i>
+                        <span class="hide-menu">회원관리
+                        </span>
+                    </a>
+                </li>
                 <li>
                     <a class="has-arrow" href="<?php echo ROOT;?>admin/notice/list.php" aria-expanded="false">
                         <i class="fas fa-exclamation-circle"></i>
@@ -23,7 +23,7 @@
                 </li>
                 <li>
                     <a class="has-arrow" href="<?php echo ROOT;?>admin/event/list.php" aria-expanded="false">
-                        <i class="fas fa-exclamation-circle"></i>
+                        <i class="fas fa-calendar"></i>
                         <span class="hide-menu">이벤트
                         </span>
                     </a>
